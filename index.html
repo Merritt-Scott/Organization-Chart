@@ -3,347 +3,468 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>United States · Org chart</title>
+<title>U.S. Organization Chart · Microtec Development &amp; Holdings</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #FAF9F6;
-    --glass: #F3F1EC;
-    --ink: #26222B;
-    --ink-soft: #6E6975;
-    --plum: #8C3A5E;
-    --plum-deep: #5E2440;
-    --plum-tint: #F6E9EF;
-    --teal: #2E6E5E;
-    --teal-tint: #E7F1EE;
-    --line: #E2DFD8;
-    --radius: 10px;
+    --ink: #0B2321;
+    --ink2: #0E2C29;
+    --ink3: #123634;
+    --porcelain: #EDEFEC;
+    --green: #328371;
+    --sand: #C5BFA9;
+    --silica: #38D6BE;
+    --silica-deep: #1E9E8C;
+    --muted: #6E7C79;
+    --gold: #D9B36C;
+    --amber: #E0B15C;
+    --glass-border: rgba(255,255,255,0.12);
   }
   * { box-sizing: border-box; margin: 0; }
+  ::selection { background: var(--silica); color: var(--ink); }
+
   body {
-    font-family: "Archivo", system-ui, sans-serif;
-    background: var(--paper);
-    color: var(--ink);
+    font-family: "Poppins", "Segoe UI", system-ui, sans-serif;
+    font-weight: 300;
+    background: var(--ink);
+    color: var(--porcelain);
     min-height: 100vh;
+    line-height: 1.55;
   }
 
-  header {
-    display: flex;
-    align-items: baseline;
-    gap: 20px;
-    flex-wrap: wrap;
-    padding: 28px 32px 18px;
-    border-bottom: 1px solid var(--line);
-  }
-  header h1 {
-    font-family: "Fraunces", serif;
-    font-weight: 600;
-    font-size: 26px;
-    letter-spacing: -0.01em;
-  }
-  header .region-tabs { display: flex; gap: 6px; margin-left: auto; }
-  .region-tabs button {
-    font: 500 13px "Archivo", sans-serif;
-    padding: 7px 14px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: #fff;
-    color: var(--ink-soft);
-    cursor: pointer;
-  }
-  .region-tabs button.active {
-    background: var(--plum);
-    border-color: var(--plum);
-    color: #fff;
-  }
+  .glow-field { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  .glow-field span { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .16; }
+  .glow-field .g1 { width: 640px; height: 640px; background: var(--silica); top: -220px; left: -160px; }
+  .glow-field .g2 { width: 520px; height: 520px; background: var(--silica-deep); bottom: -200px; right: -120px; }
+  .glow-field .g3 { width: 480px; height: 480px; background: #2A6E9E; top: 30%; right: 22%; opacity: .10; }
+  .glow-field .g4 { width: 420px; height: 420px; background: var(--silica); bottom: 8%; left: 30%; opacity: .08; }
 
-  .toolbar {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    padding: 14px 32px;
-    flex-wrap: wrap;
+  .page { position: relative; z-index: 1; }
+
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; gap: 24px;
+    padding: 16px 40px;
+    background: rgba(11,35,33,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
   }
+  .wordmark { display: flex; flex-direction: column; line-height: 1.1; }
+  .wordmark .top { font-weight: 600; font-size: 15px; letter-spacing: 0.06em; }
+  .wordmark .top em { font-style: normal; color: var(--green); }
+  .wordmark .sub { font-size: 9px; text-transform: uppercase; letter-spacing: 0.34em; color: var(--sand); }
+  .nav-note { margin-left: auto; font-size: 10px; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted); }
+  .nav-note b { font-weight: 500; color: var(--silica); }
+
+  .hero { padding: 58px 40px 6px; max-width: 1280px; }
+  .eyebrow {
+    font-size: 11.5px; font-weight: 400;
+    text-transform: uppercase; letter-spacing: 0.22em;
+    color: var(--green); margin-bottom: 14px;
+  }
+  .hero h1 { font-weight: 600; font-size: clamp(35px, 4.6vw, 56px); line-height: 1.05; letter-spacing: -0.01em; }
+  .hero h1 em { font-style: italic; color: var(--green); }
+  .hero .lede { margin-top: 16px; font-size: clamp(16px, 1.4vw, 19px); max-width: 52ch; color: rgba(237,239,236,0.7); }
+
+  .stats { display: flex; gap: 16px; flex-wrap: wrap; padding: 28px 40px 0; }
+  .stat {
+    background: rgba(14,44,41,0.55);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 18px 26px;
+    min-width: 150px;
+  }
+  .stat .num {
+    font-weight: 600; font-size: 34px; line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat .num.gold {
+    background: linear-gradient(135deg, #EDD49B, #D9B36C, #B98E45);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .stat .num.teal { color: var(--silica); }
+  .stat .num.green { color: var(--green); }
+  .stat .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); margin-top: 4px; }
+
+  .toolbar { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; padding: 26px 40px 4px; }
   .toolbar input {
-    font: 400 14px "Archivo", sans-serif;
-    padding: 8px 12px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: #fff;
-    width: 220px;
-    outline: none;
+    font: 300 14px "Poppins", sans-serif;
+    padding: 11px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(14,44,41,0.55);
+    color: var(--porcelain);
+    width: 260px; outline: none;
+    transition: border-color .2s, box-shadow .2s;
   }
-  .toolbar input:focus { border-color: var(--plum); box-shadow: 0 0 0 3px var(--plum-tint); }
-  .toolbar .hint { font-size: 13px; color: var(--ink-soft); }
-  .toolbar button {
-    font: 500 13px "Archivo", sans-serif;
-    padding: 8px 12px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: #fff;
-    color: var(--ink);
+  .toolbar input::placeholder { color: var(--muted); }
+  .toolbar input:focus { border-color: var(--silica); box-shadow: 0 0 14px rgba(56,214,190,0.25); }
+  .toolbar .pill {
+    font: 500 10.5px "Poppins", sans-serif;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    padding: 11px 22px; border-radius: 999px;
+    background: transparent; border: 1px solid var(--silica); color: var(--silica);
     cursor: pointer;
+    transition: transform .2s, background .2s;
   }
-  .toolbar button:hover { border-color: var(--plum); }
+  .toolbar .pill:hover { transform: translateY(-2px); background: rgba(56,214,190,0.1); }
+  .toolbar .hint { font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); }
 
-  .layout { display: flex; align-items: flex-start; }
-  .chart-scroll {
-    flex: 1;
-    overflow-x: auto;
-    padding: 32px 32px 64px;
-  }
+  .layout { display: flex; align-items: flex-start; gap: 8px; }
+  .chart-scroll { flex: 1; overflow-x: auto; padding: 30px 40px 40px; }
 
-  /* ---- Tree ---- */
-  .tree ul { display: flex; justify-content: center; padding-top: 26px; position: relative; list-style: none; }
-  .tree li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 26px 10px 0;
-    position: relative;
-  }
-  /* connectors */
+  .tree ul { display: flex; justify-content: center; padding-top: 28px; position: relative; list-style: none; }
+  .tree li { display: flex; flex-direction: column; align-items: center; padding: 28px 12px 0; position: relative; }
   .tree li::before, .tree li::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 26px;
-    border-top: 2px solid var(--line);
+    content: ""; position: absolute; top: 0; width: 50%; height: 28px;
+    border-top: 1.5px solid rgba(255,255,255,0.16);
   }
-  .tree li::before { left: 0; border-right: 2px solid var(--line); }
+  .tree li::before { left: 0; border-right: 1.5px solid rgba(255,255,255,0.16); }
   .tree li::after { right: 0; }
-  .tree li:only-child::before { border-right: 2px solid var(--line); border-top: 0; left: 50%; width: 0; }
+  .tree li:only-child::before { border-right: 1.5px solid rgba(255,255,255,0.16); border-top: 0; left: 50%; width: 0; }
   .tree li:only-child::after { display: none; }
-  .tree li:first-child::before { border-top: 0; border-right: 2px solid var(--line); }
-  .tree li:first-child:not(:only-child)::before { left: auto; right: 50%; width: 0; }
+  .tree li:first-child::before { border-top: 0; }
+  .tree li:first-child:not(:only-child)::before { left: auto; right: 50%; width: 0; border-right: 1.5px solid rgba(255,255,255,0.16); }
   .tree li:last-child::after { border-top: 0; }
-  .tree li:last-child:not(:only-child)::before { border-right: 2px solid var(--line); }
   .tree > ul > li::before, .tree > ul > li::after { display: none; }
   .tree ul ul::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 0;
-    height: 26px;
-    border-left: 2px solid var(--line);
+    content: ""; position: absolute; top: 0; left: 50%; width: 0; height: 28px;
+    border-left: 1.5px solid rgba(255,255,255,0.16);
   }
-  /* escalation highlight on connectors */
-  .tree li.on-path::before, .tree li.on-path::after { border-color: var(--line); }
-  .tree li.on-path::before { border-right-color: var(--plum); }
-  .tree li.on-path.first-line::before { border-top-color: var(--plum); }
-  ul.on-path-drop::before { border-left-color: var(--plum) !important; }
+  .tree li.on-path::before { border-right-color: var(--silica); }
+  ul.on-path-drop::before { border-left-color: var(--silica) !important; }
 
-  /* ---- Cards ---- */
   .card {
     position: relative;
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 12px 16px 12px 14px;
-    min-width: 148px;
-    text-align: left;
+    background: rgba(14,44,41,0.55);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 14px 20px 14px 16px;
+    min-width: 176px;
+    display: flex; align-items: center; gap: 12px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: border-color .15s, box-shadow .15s, opacity .2s;
+    transition: transform .2s, border-color .2s, box-shadow .2s, opacity .25s;
   }
-  .card:hover { border-color: var(--plum); }
-  .card.dept { background: var(--teal-tint); border-color: #BFDAD2; }
-  .card.lead { background: var(--plum-tint); border-color: #E3C4D2; }
-  .card.selected { border-color: var(--plum); box-shadow: 0 0 0 3px var(--plum-tint); }
-  .card.path { border-color: var(--plum); }
-  .card.dimmed { opacity: .32; }
+  .card:hover { transform: translateY(-2px); border-color: rgba(56,214,190,0.55); }
+  .card.selected { border-color: var(--silica); box-shadow: 0 0 24px rgba(56,214,190,0.3); }
+  .card.path { border-color: rgba(56,214,190,0.75); }
+  .card.dimmed { opacity: .22; }
   .avatar {
-    width: 34px; height: 34px;
-    border-radius: 50%;
-    flex-shrink: 0;
+    width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 600;
-    background: var(--glass);
-    color: var(--ink);
+    font-size: 12px; font-weight: 500;
+    background: var(--ink3); color: var(--porcelain);
+    border: 1px solid rgba(255,255,255,0.1);
   }
-  .card.lead .avatar { background: var(--plum); color: #fff; }
-  .card.dept .avatar { background: var(--teal); color: #fff; }
-  .card .name { font-size: 14px; font-weight: 600; line-height: 1.25; }
-  .card .role { font-size: 12px; color: var(--ink-soft); margin-top: 1px; }
+  .card.lead .avatar { background: linear-gradient(135deg, var(--green), #245C50); }
+  .card.dept .avatar { background: linear-gradient(135deg, var(--silica-deep), #14655A); }
+  .card .name { font-size: 14.5px; font-weight: 500; line-height: 1.25; white-space: nowrap; }
+  .card .role {
+    font-size: 9px; font-weight: 400;
+    text-transform: uppercase; letter-spacing: 0.13em;
+    color: var(--muted); margin-top: 3px; white-space: nowrap;
+  }
+  .card.lead .role { color: var(--green); }
+  .card.dept .role { color: var(--silica-deep); }
+  .badge {
+    position: absolute; top: -9px; right: -6px;
+    min-width: 22px; height: 22px; padding: 0 6px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #EDD49B, #D9B36C, #B98E45);
+    color: #0B2321;
+    font-size: 11px; font-weight: 600; line-height: 22px; text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
   .card .toggle {
-    position: absolute;
-    bottom: -11px; left: 50%;
-    transform: translateX(-50%);
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    background: #fff;
-    color: var(--ink-soft);
-    font-size: 11px;
-    line-height: 18px;
-    text-align: center;
-    cursor: pointer;
+    position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: var(--ink2); color: var(--porcelain);
+    font-size: 12px; line-height: 20px; text-align: center; cursor: pointer;
+    transition: border-color .2s, color .2s;
   }
-  .card .toggle:hover { border-color: var(--plum); color: var(--plum); }
+  .card .toggle:hover { border-color: var(--silica); color: var(--silica); }
   li.collapsed > ul { display: none; }
 
-  /* ---- Side panel ---- */
   .panel {
-    width: 280px;
-    flex-shrink: 0;
-    border-left: 1px solid var(--line);
-    padding: 28px 24px;
-    min-height: calc(100vh - 130px);
-    position: sticky;
-    top: 0;
-    background: var(--glass);
+    width: 356px; flex-shrink: 0;
+    margin: 30px 40px 40px 0;
+    background: rgba(14,44,41,0.55);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 28px;
+    position: sticky; top: 88px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
   }
-  .panel h2 { font-family: "Fraunces", serif; font-size: 18px; font-weight: 600; margin-bottom: 4px; }
-  .panel .sub { font-size: 13px; color: var(--ink-soft); margin-bottom: 22px; }
   .panel .label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--plum);
+    font-size: 11.5px; font-weight: 400;
+    text-transform: uppercase; letter-spacing: 0.22em;
+    color: var(--green); margin-bottom: 12px;
+  }
+  .panel h2 { font-weight: 600; font-size: 26px; line-height: 1.1; margin-bottom: 18px; }
+  .panel .sub { font-size: 10px; text-transform: uppercase; letter-spacing: 0.13em; color: var(--muted); margin-bottom: 20px; }
+  .mini-stats { display: flex; gap: 10px; margin-bottom: 22px; }
+  .mini-stats div {
+    flex: 1; background: rgba(18,54,52,0.6);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 10px 12px;
+  }
+  .mini-stats .n { font-weight: 600; font-size: 20px; font-variant-numeric: tabular-nums; }
+  .mini-stats .n.gold { background: linear-gradient(135deg,#EDD49B,#D9B36C,#B98E45); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .mini-stats .n.teal { color: var(--silica); }
+  .mini-stats .t { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted); margin-top: 2px; }
+
+  .task {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 11px 14px;
     margin-bottom: 10px;
+    background: rgba(18,54,52,0.4);
+    transition: border-color .2s;
   }
-  .chain { list-style: none; }
-  .chain li {
-    position: relative;
-    padding: 0 0 18px 24px;
-    font-size: 14px;
+  .task:hover { border-color: rgba(56,214,190,0.4); }
+  .task .t-name { font-size: 13px; font-weight: 400; line-height: 1.35; }
+  .task a { color: inherit; text-decoration: none; }
+  .task a:hover { color: var(--silica); }
+  .task .t-meta { display: flex; gap: 8px; align-items: center; margin-top: 6px; flex-wrap: wrap; }
+  .chip {
+    font-size: 8.5px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    padding: 3px 9px; border-radius: 999px;
   }
+  .chip.done { background: rgba(50,131,113,0.25); color: #6FCDB4; }
+  .chip.prog { background: rgba(56,214,190,0.15); color: var(--silica); }
+  .chip.todo { background: rgba(197,191,169,0.15); color: var(--sand); }
+  .chip.cat { background: rgba(255,255,255,0.07); color: var(--muted); }
+  .chip.due { background: rgba(224,177,92,0.15); color: var(--amber); }
+  .section-lbl {
+    font-size: 9.5px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--muted);
+    margin: 20px 0 10px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .chain { list-style: none; padding: 0; }
+  .chain li { position: relative; padding: 0 0 18px 30px; font-size: 13.5px; font-weight: 400; }
   .chain li::before {
-    content: "";
-    position: absolute;
-    left: 6px; top: 6px;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--plum);
+    content: ""; position: absolute; left: 6px; top: 6px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--silica);
+    box-shadow: 0 0 10px rgba(56,214,190,0.6);
   }
   .chain li:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    left: 9.5px; top: 16px; bottom: 2px;
-    width: 1.5px;
-    background: #D8BFCB;
+    content: ""; position: absolute; left: 10px; top: 18px; bottom: 3px;
+    width: 1.5px; background: rgba(56,214,190,0.3);
   }
-  .chain li:first-child::before { background: var(--plum-deep); }
-  .chain li .lvl { display: block; font-size: 11px; color: var(--ink-soft); }
-  .panel .empty { font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
-  .panel .note {
-    margin-top: 26px;
-    padding-top: 18px;
-    border-top: 1px solid var(--line);
-    font-size: 12.5px;
-    color: var(--ink-soft);
-    line-height: 1.6;
+  .chain li .num {
+    font-weight: 600;
+    background: linear-gradient(135deg,#EDD49B,#D9B36C,#B98E45);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin-right: 6px; font-variant-numeric: tabular-nums;
+  }
+  .chain li .lvl { display: block; font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-top: 1px; }
+  .panel .empty { font-size: 14.5px; color: rgba(237,239,236,0.65); }
+  .panel .none { font-size: 12.5px; color: var(--muted); font-style: italic; }
+
+  .routing { padding: 8px 40px 90px; max-width: 1280px; }
+  .routing-card {
+    background: rgba(14,44,41,0.55);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 28px;
+  }
+  .routing-card .label {
+    font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.22em;
+    color: var(--amber); margin-bottom: 6px;
+  }
+  .routing-card h3 { font-weight: 600; font-size: 22px; margin-bottom: 4px; }
+  .routing-card .desc { font-size: 14px; color: rgba(237,239,236,0.6); margin-bottom: 20px; max-width: 70ch; }
+  .routing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+
+  .reveal { opacity: 0; transform: translateY(30px); animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
+  .reveal.d1 { animation-delay: .1s; } .reveal.d2 { animation-delay: .2s; }
+  .reveal.d3 { animation-delay: .3s; } .reveal.d4 { animation-delay: .4s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { animation: none; opacity: 1; transform: none; }
+    * { transition: none !important; }
   }
 
-  .germany-empty {
-    padding: 80px 32px;
-    text-align: center;
-    color: var(--ink-soft);
-  }
-  .germany-empty h2 { font-family: "Fraunces", serif; font-size: 22px; color: var(--ink); margin-bottom: 8px; }
-
-  @media (max-width: 760px) {
+  @media (max-width: 900px) {
+    nav, .hero, .stats, .toolbar, .routing { padding-left: 20px; padding-right: 20px; }
+    .chart-scroll { padding: 22px 20px 30px; }
     .layout { flex-direction: column; }
-    .panel { width: 100%; min-height: 0; border-left: 0; border-top: 1px solid var(--line); position: static; }
+    .panel { width: calc(100% - 40px); margin: 0 20px 30px; position: static; max-height: none; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>Org chart</h1>
-  <div class="region-tabs">
-    <button class="active" data-region="us">United States</button>
-    <button data-region="de">Germany</button>
-  </div>
-</header>
-
-<div class="toolbar">
-  <input id="search" type="search" placeholder="Search people or departments" aria-label="Search people or departments">
-  <button id="expand-all">Expand all</button>
-  <button id="collapse-all">Collapse all</button>
-  <span class="hint">Click a card to trace its chain of authority</span>
+<div class="glow-field" aria-hidden="true">
+  <span class="g1"></span><span class="g2"></span><span class="g3"></span><span class="g4"></span>
 </div>
 
-<div class="layout" id="us-view">
-  <div class="chart-scroll">
+<div class="page">
+
+<nav>
+  <div class="wordmark">
+    <span class="top">MICRO<em>TEC</em></span>
+    <span class="sub">Development &amp; Holdings</span>
+  </div>
+  <span class="nav-note">Synced from Notion · <b>Tasks Tracker</b> · Jul 17, 2026</span>
+</nav>
+
+<section class="hero reveal">
+  <div class="eyebrow">People · Authority · Workload</div>
+  <h1>U.S. <em>Organization Chart</em></h1>
+  <p class="lede">Every task in the Microtec Development &amp; Holdings Tracker, assigned to its owner and rolled up the chain of command. Select anyone to see their workload and path of authority.</p>
+</section>
+
+<div class="stats reveal d1">
+  <div class="stat"><div class="num gold" data-count="27">0</div><div class="lbl">Total tasks</div></div>
+  <div class="stat"><div class="num teal" data-count="7">0</div><div class="lbl">In progress</div></div>
+  <div class="stat"><div class="num" data-count="7" style="color: var(--sand);">0</div><div class="lbl">Not started</div></div>
+  <div class="stat"><div class="num green" data-count="13">0</div><div class="lbl">Done</div></div>
+</div>
+
+<div class="toolbar reveal d2">
+  <input id="search" type="search" placeholder="Search people, departments, tasks" aria-label="Search people, departments, or tasks">
+  <button class="pill" id="expand-all">Expand All</button>
+  <button class="pill" id="collapse-all">Collapse All</button>
+  <span class="hint">Select a card · gold badge = open tasks</span>
+</div>
+
+<div class="layout">
+  <div class="chart-scroll reveal d3">
     <div class="tree" id="tree"></div>
   </div>
-  <aside class="panel" id="panel">
+  <aside class="panel reveal d4" id="panel">
+    <div class="label">Personnel File</div>
     <div class="empty" id="panel-empty">
-      Select anyone on the chart to see who they report to, all the way up.
-      This same path will drive task escalation once the chart is connected to Notion.
+      Select anyone on the chart to see their assigned tasks from the tracker, their team's rolled-up workload, and their escalation path to the top.
     </div>
     <div id="panel-detail" hidden>
       <h2 id="p-name"></h2>
-      <div class="sub" id="p-role"></div>
-      <div class="label">Escalation path</div>
+      
+      <div class="mini-stats">
+        <div><div class="n gold" id="m-open">0</div><div class="t">Open · Own</div></div>
+        <div><div class="n teal" id="m-team">0</div><div class="t">Open · Team</div></div>
+        <div><div class="n" id="m-done" style="color: var(--green);">0</div><div class="t">Done</div></div>
+      </div>
+      <div class="section-lbl" style="border-top: 0; padding-top: 0;">Assigned Tasks</div>
+      <div id="p-tasks"></div>
+      <div class="section-lbl">Escalation Path</div>
       <ul class="chain" id="p-chain"></ul>
-      <div class="note">Tasks assigned to this person escalate upward through each step shown, ending at the top of the chart.</div>
     </div>
   </aside>
 </div>
 
-<div class="germany-empty" id="de-view" hidden>
-  <h2>Germany</h2>
-  <p>This region is on the whiteboard but hasn't been filled in yet.<br>Add people to <code>orgData.de</code> in this file when ready.</p>
+<section class="routing reveal d4">
+  <div class="routing-card">
+    <div class="label">Needs Routing</div>
+    <h3>Tasks without a home on this chart</h3>
+    <p class="desc">These tracker items are either unassigned or assigned to people who don't appear on the U.S. chart yet. By default they escalate to Will until an owner is set.</p>
+    <div class="routing-grid" id="routing-list"></div>
+  </div>
+</section>
+
 </div>
 
 <script>
+const TASKS = [
+  { name: "Designation of Cian McComb on Board of Microtec", status: "Done", cat: "Legal", owners: [], url: "https://app.notion.com/37d2a62d93a380e59f0dfd6e0a1fc83f" },
+  { name: "Microtec GmbH Financial/Accounting Analysis", status: "Not started", cat: "Finance", owners: ["mike"], url: "https://app.notion.com/3822a62d93a3801b8b2af2c6d097a7d0" },
+  { name: "Elijah A CA", status: "Done", cat: "Admin", owners: ["will"], url: "https://app.notion.com/38b2a62d93a380298a7cc75c5f72524a" },
+  { name: "Eric Tapper CA", status: "Done", cat: "Admin", owners: ["will"], url: "https://app.notion.com/38b2a62d93a3803c88e3c99a6b0846d6" },
+  { name: "Merritt Scott OL", status: "Done", cat: null, owners: ["will"], url: "https://app.notion.com/38b2a62d93a380408056ecf40d042956" },
+  { name: "Kevin Shepherd CA", status: "Done", cat: "Admin", owners: ["will"], url: "https://app.notion.com/38b2a62d93a380bf83d2f5ebd7101e68" },
+  { name: "Consulting Firms for Technology Transfer Process", status: "In progress", cat: "Admin", owners: ["merritt"], url: "https://app.notion.com/38b2a62d93a380ee8676eeb7612715c3" },
+  { name: "Carlos Rodriguez CA", status: "Done", cat: "Admin", owners: ["will"], url: "https://app.notion.com/38b2a62d93a380ff8032f11e347f49a5" },
+  { name: "Set up Merritt on OneDigital", status: "Done", cat: null, owners: [], offChart: "Jean Marie Cialone", url: "https://app.notion.com/3962a62d93a3804a930ccb9c5b09aa35" },
+  { name: "Set up Renters Insurance", status: "Done", cat: null, owners: [], offChart: "Jean Marie Cialone", url: "https://app.notion.com/3962a62d93a380548757ced9632855af" },
+  { name: "Joe Gallagher Consulting Agreement", status: "In progress", cat: null, owners: ["will"], url: "https://app.notion.com/3962a62d93a38092a42bf495ab4359c2" },
+  { name: "Terminate Joe Mathews off OneDigital", status: "Done", cat: null, owners: [], offChart: "Jean Marie Cialone", url: "https://app.notion.com/3962a62d93a380bc80a8e61a0007ff39" },
+  { name: "AllSearch Multiple Position Search", status: "In progress", cat: null, owners: [], url: "https://app.notion.com/3962a62d93a380c4be4fff81d4c2be79" },
+  { name: "Allen & York", status: "Not started", cat: null, owners: [], url: "https://app.notion.com/3972a62d93a3802a83b4d7ecc32bb343" },
+  { name: "Michael Page - GmbH Manager Search", status: "Not started", cat: null, owners: [], url: "https://app.notion.com/3972a62d93a380928f65c99294af4c1e" },
+  { name: "JAC Recruitment - GmbH Manager Search", status: "Not started", cat: null, owners: [], url: "https://app.notion.com/3972a62d93a3809eb202d9fa40870009" },
+  { name: "Microtec D&H Website Creation", status: "In progress", cat: "Admin", owners: ["merritt"], url: "https://app.notion.com/39d2a62d93a3802884afc7fdd35cfd88" },
+  { name: "Grinding Elements Cost/Profit Ratio", status: "Not started", cat: "Equipment", owners: ["mike", "nick"], url: "https://app.notion.com/4f92a62d93a38312a377814e513be31b" },
+  { name: "UTM Cost/Profit Ratio", status: "Not started", cat: "Equipment", owners: ["mike", "nick"], url: "https://app.notion.com/7802a62d93a38214a23c818ea6b44aec" },
+  { name: "Notion Automation for Will", status: "Not started", cat: null, owners: ["merritt"], url: "https://app.notion.com/3a02a62d93a380318ec7e0f515ed5624" },
+  { name: "Close Out Delfino Marketing Invoices", status: "In progress", cat: null, owners: ["merritt"], url: "https://app.notion.com/3a02a62d93a380cd87e4fe2e16e8f360" },
+  { name: "Provide Microgreens with shipping information", status: "Done", cat: "Admin", due: "Jun 17", owners: ["will"], offChart: "Michael Kalinichenko", url: "https://app.notion.com/3802a62d93a38086b445f0e066057c13" },
+  { name: "CRT Concrete LLC", status: "Done", cat: "Finance", due: "Jun 18", owners: ["mike"], url: "https://app.notion.com/3832a62d93a380abaacbc7aba3550914" },
+  { name: "Organization of All Notion Teamspaces", status: "Done", cat: "Admin", due: "Jun 19", owners: ["will"], offChart: "Michael Kalinichenko", url: "https://app.notion.com/37d2a62d93a38091ae79cf67e8cfa090" },
+  { name: "BioVeritas NDA", status: "Done", cat: "Admin", due: "Jun 19", owners: ["will"], url: "https://app.notion.com/ed32a62d93a382749eba018613cd0dce" },
+  { name: "HAYS - GmbH Manager Search", status: "In progress", cat: "Admin", due: "Jul 8", owners: ["will"], url: "https://app.notion.com/3822a62d93a380ddbd76d4b05cb6547c" },
+  { name: "Quantify and Research different opportunities for Micronization", status: "In progress", cat: "Admin", due: "Jul 31", owners: [], offChart: "Michael Kalinichenko", url: "https://app.notion.com/3802a62d93a380aaba8becd61fb9e741" }
+];
+
 const orgData = {
-  us: {
-    id: "tony", name: "Tony", role: "Top of chart", type: "lead",
-    children: [
-      { id: "will", name: "Will", role: "Reports to Tony", type: "lead",
-        children: [
-          { id: "eng", name: "Engineering", role: "Department", type: "dept",
-            children: [
-              { id: "stan", name: "Stan", role: "Engineering lead", type: "person",
-                children: [
-                  { id: "head-eng", name: "Head – Engineering", role: "Function", type: "dept",
-                    children: [
-                      { id: "carlos", name: "Carlos", role: "Manager", type: "person",
-                        children: [
-                          { id: "nick", name: "Nick", role: "", type: "person",
-                            children: [ { id: "chris-1", name: "Chris", role: "", type: "person", children: [] } ] },
-                          { id: "martin", name: "Martin", role: "", type: "person", children: [] },
-                          { id: "tabitha", name: "Tabitha", role: "", type: "person", children: [] }
-                        ] }
-                    ] },
-                  { id: "pm", name: "PM", role: "Function", type: "dept", children: [] }
-                ] }
-            ] },
-          { id: "rd", name: "R&D", role: "Department", type: "dept",
-            children: [
-              { id: "kevin", name: "Kevin", role: "R&D lead", type: "person",
-                children: [ { id: "elijah", name: "Elijah", role: "", type: "person", children: [] } ] }
-            ] },
-          { id: "ops", name: "Operations", role: "Department", type: "dept",
-            children: [ { id: "joe", name: "Joe Meierhoff", role: "Operations lead", type: "person", children: [] } ] },
-          { id: "tech", name: "Technology", role: "Department", type: "dept",
-            children: [ { id: "meredith", name: "Meredith", role: "Technology lead", type: "person", children: [] } ] },
-          { id: "fin", name: "Finance", role: "Department", type: "dept",
-            children: [
-              { id: "mike", name: "Mike Visser", role: "Finance lead", type: "person",
-                children: [ { id: "chris-2", name: "Chris", role: "", type: "person", children: [] } ] }
-            ] }
-        ] }
-    ]
-  },
-  de: null
+  id: "tony", name: "Tony", type: "lead",
+  children: [
+    { id: "will", name: "Will Cialone", type: "lead",
+      children: [
+        { id: "eng", name: "Engineering", type: "dept",
+          children: [
+            { id: "stan", name: "Stan Gibson", type: "person",
+              children: [
+                { id: "head-eng", name: "Head – Engineering", type: "dept",
+                  children: [
+                    { id: "carlos", name: "Carlos Rodriguez", type: "person",
+                      children: [
+                        { id: "nick", name: "Nick Tenley", type: "person",
+                          children: [ { id: "chris-1", name: "Chris Cheadle", type: "person", children: [] } ] },
+                        { id: "martin", name: "Martin Guzman", type: "person", children: [] },
+                        { id: "tabitha", name: "Tabitha Eaves", type: "person", children: [] }
+                      ] }
+                  ] },
+                { id: "pm", name: "PM", type: "dept", children: [] }
+              ] }
+          ] },
+        { id: "rd", name: "R&D", type: "dept",
+          children: [
+            { id: "kevin", name: "Kevin Shepherd", type: "person",
+              children: [ { id: "elijah", name: "Elijah Adesanya", type: "person", children: [] } ] }
+          ] },
+        { id: "ops", name: "Operations", type: "dept",
+          children: [ { id: "joe", name: "Joe Meierhoff", type: "person", children: [] } ] },
+        { id: "tech", name: "Technology", type: "dept",
+          children: [ { id: "merritt", name: "Merritt Scott", type: "person", children: [] } ] },
+        { id: "fin", name: "Finance", type: "dept",
+          children: [
+            { id: "mike", name: "Mike Kneller", type: "person",
+              children: [ { id: "chris-2", name: "Chris Cheadle", type: "person", children: [] } ] }
+          ] }
+      ] }
+  ]
 };
 
-const parents = {};
-const nodesById = {};
+const parents = {}, nodesById = {}, taskAlias = { "chris-1": "chris", "chris-2": "chris" };
+
+function ownerKey(id) { return taskAlias[id] || id; }
+function tasksFor(id) {
+  const k = ownerKey(id);
+  return TASKS.filter(t => t.owners.includes(k));
+}
+function subtreeIds(node, acc) {
+  acc.push(node.id);
+  node.children.forEach(c => subtreeIds(c, acc));
+  return acc;
+}
+function openCount(list) { return list.filter(t => t.status !== "Done").length; }
 
 function initials(n) {
-  return n.split(/[\s–-]+/).filter(Boolean).slice(0, 2).map(w => w[0]).join("").toUpperCase();
+  return n.split(/[\s\u2013-]+/).filter(Boolean).slice(0, 2).map(w => w[0]).join("").toUpperCase();
 }
 
 function buildNode(node, parentId) {
@@ -352,26 +473,30 @@ function buildNode(node, parentId) {
   const li = document.createElement("li");
   li.dataset.id = node.id;
 
+  const own = tasksFor(node.id);
+  const open = openCount(own);
+
   const card = document.createElement("div");
   card.className = "card " + node.type;
   card.dataset.id = node.id;
   card.tabIndex = 0;
   card.setAttribute("role", "button");
-  card.setAttribute("aria-label", node.name + ", show escalation path");
+  card.setAttribute("aria-label", node.name + ", show tasks and escalation path");
   card.innerHTML =
     '<div class="avatar">' + initials(node.name) + '</div>' +
     '<div><div class="name">' + node.name + '</div>' +
-    (node.role ? '<div class="role">' + node.role + '</div>' : '') + '</div>';
+    '</div>' +
+    (open > 0 ? '<div class="badge">' + open + '</div>' : '');
 
   if (node.children.length) {
     const t = document.createElement("button");
     t.className = "toggle";
-    t.textContent = "–";
+    t.textContent = "\u2013";
     t.setAttribute("aria-label", "Collapse or expand " + node.name + "'s reports");
     t.addEventListener("click", e => {
       e.stopPropagation();
       li.classList.toggle("collapsed");
-      t.textContent = li.classList.contains("collapsed") ? "+" : "–";
+      t.textContent = li.classList.contains("collapsed") ? "+" : "\u2013";
     });
     card.appendChild(t);
   }
@@ -390,7 +515,7 @@ function buildNode(node, parentId) {
 
 const treeEl = document.getElementById("tree");
 const rootUl = document.createElement("ul");
-rootUl.appendChild(buildNode(orgData.us, null));
+rootUl.appendChild(buildNode(orgData, null));
 treeEl.appendChild(rootUl);
 
 function chainFor(id) {
@@ -400,10 +525,21 @@ function chainFor(id) {
   return chain;
 }
 
-let selectedId = null;
+function statusChip(s) {
+  if (s === "Done") return '<span class="chip done">Done</span>';
+  if (s === "In progress") return '<span class="chip prog">In progress</span>';
+  return '<span class="chip todo">Not started</span>';
+}
+
+function taskCard(t, extra) {
+  return '<div class="task"><div class="t-name"><a href="' + t.url + '" target="_blank" rel="noopener">' + t.name + '</a></div>' +
+    '<div class="t-meta">' + statusChip(t.status) +
+    (t.cat ? '<span class="chip cat">' + t.cat + '</span>' : '') +
+    (t.due ? '<span class="chip due">Due ' + t.due + '</span>' : '') +
+    (extra || '') + '</div></div>';
+}
 
 function selectNode(id) {
-  selectedId = id;
   const chain = new Set(chainFor(id));
 
   document.querySelectorAll(".card").forEach(c => {
@@ -411,40 +547,58 @@ function selectNode(id) {
     c.classList.toggle("path", chain.has(c.dataset.id) && c.dataset.id !== id);
     c.classList.toggle("dimmed", !chain.has(c.dataset.id));
   });
-  document.querySelectorAll(".tree li").forEach(li => {
-    li.classList.toggle("on-path", chain.has(li.dataset.id));
-  });
+  document.querySelectorAll(".tree li").forEach(li => li.classList.toggle("on-path", chain.has(li.dataset.id)));
   document.querySelectorAll(".tree ul").forEach(ul => {
     const kid = [...ul.children].some(li => chain.has(li.dataset.id));
     ul.classList.toggle("on-path-drop", kid);
   });
 
   const node = nodesById[id];
+  const own = tasksFor(id);
+  const teamIds = [...new Set(subtreeIds(node, []).map(ownerKey))];
+  const teamTasks = TASKS.filter(t => t.owners.some(o => teamIds.includes(o)));
+
   document.getElementById("panel-empty").hidden = true;
-  const detail = document.getElementById("panel-detail");
-  detail.hidden = false;
+  document.getElementById("panel-detail").hidden = false;
   document.getElementById("p-name").textContent = node.name;
-  document.getElementById("p-role").textContent = node.role || "Team member";
+  
+  document.getElementById("m-open").textContent = openCount(own);
+  document.getElementById("m-team").textContent = openCount(teamTasks);
+  document.getElementById("m-done").textContent = own.filter(t => t.status === "Done").length;
+
+  const tEl = document.getElementById("p-tasks");
+  tEl.innerHTML = own.length
+    ? own.sort((a, b) => (a.status === "Done") - (b.status === "Done")).map(t => taskCard(t)).join("")
+    : '<p class="none">No tracker tasks assigned directly. Open items from this person\u2019s team roll up here: ' + openCount(teamTasks) + ' open.</p>';
+
   const chainEl = document.getElementById("p-chain");
   chainEl.innerHTML = "";
   chainFor(id).forEach((cid, i) => {
     const n = nodesById[cid];
     const li = document.createElement("li");
-    li.innerHTML = n.name + '<span class="lvl">' + (i === 0 ? "Assignee" : "Escalation step " + i) + '</span>';
+    li.innerHTML = '<span class="num">' + String(i).padStart(2, "0") + '</span>' + n.name +
+      '<span class="lvl">' + (i === 0 ? "Assignee" : "Escalation step") + '</span>';
     chainEl.appendChild(li);
   });
 }
 
+const routing = TASKS.filter(t => t.owners.length === 0);
+document.getElementById("routing-list").innerHTML = routing.map(t =>
+  taskCard(t, '<span class="chip cat">' + (t.offChart ? "Assigned: " + t.offChart : "Unassigned") + '</span>')
+).join("");
+
 document.getElementById("search").addEventListener("input", e => {
   const q = e.target.value.trim().toLowerCase();
-  document.querySelectorAll(".card").forEach(c => {
+  document.querySelectorAll(".tree .card").forEach(c => {
     if (!q) { c.classList.remove("dimmed"); return; }
     const node = nodesById[c.dataset.id];
-    const hit = node.name.toLowerCase().includes(q) || (node.role || "").toLowerCase().includes(q);
+    const hit = node.name.toLowerCase().includes(q) ||
+      tasksFor(node.id).some(t => t.name.toLowerCase().includes(q));
     c.classList.toggle("dimmed", !hit);
   });
   if (q) {
     document.querySelectorAll(".tree li").forEach(li => li.classList.remove("on-path"));
+    document.querySelectorAll(".tree ul").forEach(ul => ul.classList.remove("on-path-drop"));
     document.querySelectorAll(".card").forEach(c => c.classList.remove("selected", "path"));
   }
 });
@@ -453,12 +607,12 @@ document.getElementById("expand-all").addEventListener("click", () => {
   document.querySelectorAll(".tree li.collapsed").forEach(li => {
     li.classList.remove("collapsed");
     const t = li.querySelector(":scope > .card .toggle");
-    if (t) t.textContent = "–";
+    if (t) t.textContent = "\u2013";
   });
 });
 document.getElementById("collapse-all").addEventListener("click", () => {
   document.querySelectorAll(".tree li").forEach(li => {
-    if (li.querySelector(":scope > ul") && parents[li.dataset.id] !== null && li.dataset.id !== "tony" && li.dataset.id !== "will") {
+    if (li.querySelector(":scope > ul") && li.dataset.id !== "tony" && li.dataset.id !== "will") {
       li.classList.add("collapsed");
       const t = li.querySelector(":scope > .card .toggle");
       if (t) t.textContent = "+";
@@ -466,14 +620,17 @@ document.getElementById("collapse-all").addEventListener("click", () => {
   });
 });
 
-document.querySelectorAll(".region-tabs button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".region-tabs button").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    const de = btn.dataset.region === "de";
-    document.getElementById("us-view").hidden = de;
-    document.getElementById("de-view").hidden = !de;
-  });
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.querySelectorAll(".stat .num").forEach(el => {
+  const target = parseInt(el.dataset.count, 10);
+  if (reduce) { el.textContent = target; return; }
+  const t0 = performance.now();
+  function step(t) {
+    const p = Math.min((t - t0) / 900, 1);
+    el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
 });
 </script>
 </body>
