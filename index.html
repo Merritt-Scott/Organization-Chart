@@ -189,6 +189,9 @@
   .seg button.active.s-todo{border-color:var(--sand);color:var(--sand);background:rgba(197,191,169,.08)}
   .seg button.active.s-progress{border-color:var(--silica);color:var(--silica);background:rgba(56,214,190,.08)}
   .seg button.active.s-done{border-color:#6FCDB4;color:#6FCDB4;background:rgba(50,131,113,.12)}
+  .seg button.active.p-high{border-color:var(--amber);color:var(--amber);background:rgba(224,177,92,.08)}
+  .seg button.active.p-med{border-color:var(--sand);color:var(--sand);background:rgba(197,191,169,.08)}
+  .seg button.active.p-low{border-color:rgba(255,255,255,.4);color:rgba(237,239,236,.8);background:rgba(255,255,255,.05)}
 
   /* ---- Help ---- */
   .help h3{font-weight:600;font-size:16px;margin:22px 0 8px;color:var(--silica)}
@@ -235,8 +238,8 @@
     <span class="sub">Development &amp; Holdings</span>
   </div>
   <div class="tabs" role="tablist">
-    <button data-view="chart" class="active">Chart</button>
-    <button data-view="board">Board</button>
+    <button data-view="chart" class="active">Organization Chart</button>
+    <button data-view="board">Task Board</button>
     <button data-view="projects">Projects</button>
   </div>
   <div class="nav-right">
@@ -296,11 +299,12 @@
   <section class="hero reveal">
     <div class="eyebrow">Every task &middot; Three columns</div>
     <h1>The <em>Board</em></h1>
-    <p class="lede">Drag a task between columns to change its status &mdash; or just click it and pick. Click any task to edit everything about it.</p>
+    <p class="lede">Drag a task between columns to change its status &mdash; or just click it and pick. High-priority and overdue work floats to the top of each column.</p>
   </section>
   <div class="toolbar">
     <select id="f-project" aria-label="Filter by project"></select>
     <select id="f-person" aria-label="Filter by person"></select>
+    <select id="f-priority" aria-label="Filter by priority"><option value="">All priorities</option><option value="high">High only</option><option value="med">Medium only</option><option value="low">Low only</option></select>
     <button class="btn ghost" id="f-clear">Clear Filters</button>
     <span class="hint" id="board-count"></span>
   </div>
@@ -360,14 +364,14 @@ const SEED_PROJECTS = [
   { id:"p-recruit", name:"GmbH Manager Search", desc:"Recruiting firms engaged for the Germany manager role" }
 ];
 
-function T(name, status, cat, assignee, project, due, notes){
+function T(name, status, cat, assignee, project, due, notes, priority){
   return { id:"t-"+Math.random().toString(36).slice(2,9), name:name, status:status, cat:cat||null,
            assignee:assignee||null, project:project||"p-tracker", due:due||null, notes:notes||"",
-           escalated:false, trail:[], created:"2026-07-17" };
+           priority:priority||"med", escalated:false, trail:[], created:"2026-07-17" };
 }
 const SEED_TASKS = [
   T("Designation of Cian McComb on Board of Microtec","done","Legal",null,"p-tracker",null,"Was unassigned in Notion"),
-  T("Microtec GmbH Financial/Accounting Analysis","todo","Finance","mike"),
+  T("Microtec GmbH Financial/Accounting Analysis","todo","Finance","mike",null,null,"","high"),
   T("Elijah A CA","done","Admin","will"),
   T("Eric Tapper CA","done","Admin","will"),
   T("Merritt Scott OL","done",null,"will"),
@@ -391,7 +395,7 @@ const SEED_TASKS = [
   T("CRT Concrete LLC","done","Finance","mike","p-tracker","2026-06-18"),
   T("Organization of All Notion Teamspaces","done","Admin","will","p-tracker","2026-06-19","Shared with Michael Kalinichenko (not on chart)"),
   T("BioVeritas NDA","done","Admin","will","p-tracker","2026-06-19"),
-  T("HAYS - GmbH Manager Search","progress","Admin","will","p-recruit","2026-07-08"),
+  T("HAYS - GmbH Manager Search","progress","Admin","will","p-recruit","2026-07-08","","high"),
   T("Quantify and Research different opportunities for Micronization","progress","Admin",null,"p-tracker","2026-07-31","Was assigned to Michael Kalinichenko (not on chart)")
 ];
 
@@ -406,6 +410,14 @@ function freshState(){
            projects: JSON.parse(JSON.stringify(SEED_PROJECTS)),
            tasks: JSON.parse(JSON.stringify(SEED_TASKS)),
            welcomed:false, v:1 };
+}
+function migrateState(st){
+  if (!st) return st;
+  (st.tasks || []).forEach(function(t){
+    if (!t.priority) t.priority = "med";
+    if (!t.trail) t.trail = [];
+  });
+  return st;
 }
 function loadLocal(){
   try { const raw = localStorage.getItem(LS_KEY); if (raw) return JSON.parse(raw); } catch(e){}
@@ -478,6 +490,8 @@ function renderStats(){
     '<div class="stat"><div class="num teal">'+prog+'</div><div class="lbl">In progress</div></div>'+
     '<div class="stat"><div class="num sand">'+todo+'</div><div class="lbl">To do</div></div>'+
     '<div class="stat"><div class="num green">'+done+'</div><div class="lbl">Done</div></div>';
+  var hi = state.tasks.filter(function(t){ return t.priority === "high" && t.status !== "done"; }).length;
+  if (hi > 0) html += '<div class="stat"><div class="num" style="color:var(--amber)">'+hi+'</div><div class="lbl">High priority</div></div>';
   if (over > 0) html += '<div class="stat"><div class="num" style="color:var(--amber)">'+over+'</div><div class="lbl">Overdue</div></div>';
   document.getElementById("stats").innerHTML = html;
 }
@@ -649,24 +663,44 @@ function clearHighlight(){
   document.querySelectorAll("#wires .wire").forEach(function(w){ w.classList.remove("lit","dim"); });
 }
 
+function prRank(t){ return t.priority === "high" ? 0 : t.priority === "low" ? 2 : 1; }
+function taskSort(a, b){
+  var d = prRank(a) - prRank(b);
+  if (d) return d;
+  d = (isOverdue(b) ? 1 : 0) - (isOverdue(a) ? 1 : 0);
+  if (d) return d;
+  return (a.due || "9999") < (b.due || "9999") ? -1 : 1;
+}
 function taskCardHTML(t, opts){
   opts = opts || {};
   var proj = projectById(t.project);
   var who = t.assignee ? personById(t.assignee) : null;
   var mgr = t.assignee ? managerOf(t.assignee) : null;
-  var escBtn = (!opts.noEsc && t.status !== "done" && mgr)
-    ? '<button class="t-esc-btn" data-esc="'+t.id+'" title="Send up to '+esc(mgr.name)+'">&#8679; Escalate</button>' : '';
+  var canBack = t.escalated && t.trail && t.trail.length && t.status !== "done";
+  var backName = "";
+  if (canBack){
+    var prev = t.trail[t.trail.length - 1];
+    backName = prev === "unassigned" ? "Unassigned" : (personById(prev) ? personById(prev).name.split(" ")[0] : "");
+    if (!backName) canBack = false;
+  }
+  var btns = "";
+  if (!opts.noEsc && t.status !== "done"){
+    if (canBack) btns += '<button class="t-back-btn" data-back="'+t.id+'" title="Return to '+esc(backName)+'">&#8681; Send back</button>';
+    if (mgr) btns += '<button class="t-esc-btn" data-esc="'+t.id+'" title="Send up to '+esc(mgr.name)+'">&#8679; Escalate</button>';
+  }
   return '<div class="task'+(isOverdue(t)?' overdue':'')+'" data-task="'+t.id+'" '+(opts.drag?'draggable="true"':'')+'>'+
     '<div class="t-name">'+esc(t.name)+'</div>'+
-    '<div class="t-meta">'+statusChip(t.status)+
+    '<div class="t-meta">'+
+    (t.priority === "high" ? '<span class="chip pr-high">&#9650; High</span>' : '')+
+    (t.priority === "low" ? '<span class="chip pr-low">&#9660; Low</span>' : '')+
+    statusChip(t.status)+
     (proj && !opts.noProj ? '<span class="chip proj">'+esc(proj.name)+'</span>' : '')+
     (who && !opts.noWho ? '<span class="chip person">'+esc(who.name)+'</span>' : (!who && !opts.noWho ? '<span class="chip cat">Unassigned</span>':''))+
     (t.cat ? '<span class="chip cat">'+esc(t.cat)+'</span>' : '')+
     (t.due ? '<span class="chip due">Due '+fmtDue(t.due)+'</span>' : '')+
     (t.escalated && t.status!=="done" ? '<span class="chip esc">Escalated</span>' : '')+
-    escBtn+'</div></div>';
+    btns+'</div></div>';
 }
-
 function renderPanel(){
   var empty = document.getElementById("panel-empty");
   var det = document.getElementById("panel-detail");
@@ -701,7 +735,7 @@ function renderPanel(){
   }
   html += '<div class="section-lbl'+(escToMe.length?'':' first')+'">Assigned Tasks</div>';
   var normal = own.filter(function(t){ return !(t.escalated && t.status!=="done"); })
-    .sort(function(a,b){ return (a.status==="done") - (b.status==="done"); });
+    .sort(function(a,b){ var d = (a.status==="done") - (b.status==="done"); return d || taskSort(a,b); });
   html += normal.length ? normal.map(function(t){ return taskCardHTML(t,{noWho:true}); }).join("")
     : '<p class="none">Nothing assigned directly. Team has '+openTasks(teamTasks).length+' open item'+(openTasks(teamTasks).length===1?"":"s")+'.</p>';
 
@@ -728,6 +762,9 @@ function wireTaskCards(scope){
   scope.querySelectorAll(".t-esc-btn").forEach(function(btn){
     btn.addEventListener("click", function(e){ e.stopPropagation(); escalateTask(btn.dataset.esc); });
   });
+  scope.querySelectorAll(".t-back-btn").forEach(function(btn){
+    btn.addEventListener("click", function(e){ e.stopPropagation(); deescalateTask(btn.dataset.back); });
+  });
 }
 /* ---------- Board ---------- */
 function renderFilters(){
@@ -746,6 +783,7 @@ function boardTasks(){
     if (boardFilters.project && t.project !== boardFilters.project) return false;
     if (boardFilters.person === "__none" && t.assignee) return false;
     if (boardFilters.person && boardFilters.person !== "__none" && t.assignee !== boardFilters.person) return false;
+    if (boardFilters.priority && t.priority !== boardFilters.priority) return false;
     return true;
   });
 }
@@ -755,7 +793,7 @@ function renderBoard(){
   var list = boardTasks();
   var cols = [ {key:"todo", label:"To Do"}, {key:"progress", label:"In Progress"}, {key:"done", label:"Done"} ];
   host.innerHTML = cols.map(function(c){
-    var items = list.filter(function(t){ return t.status === c.key; });
+    var items = list.filter(function(t){ return t.status === c.key; }).sort(taskSort);
     return '<div class="col c-'+c.key+'" data-col="'+c.key+'">'+
       '<h3>'+c.label+'<span class="cnt">'+items.length+'</span></h3>'+
       (items.length ? items.map(function(t){ return taskCardHTML(t,{drag:true}); }).join("")
@@ -837,6 +875,28 @@ function escalateTask(id){
   selectedPerson = mgr.id;
   renderPanel(); highlightChain(mgr.id);
 }
+
+function deescalateTask(id){
+  var t = state.tasks.find(function(x){ return x.id === id; });
+  if (!t || !t.trail || !t.trail.length) return;
+  var prev = t.trail[t.trail.length - 1];
+  var cur = t.assignee;
+  var toName = prev === "unassigned" ? "Unassigned" : (personById(prev) ? personById(prev).name : null);
+  if (toName === null){ // previous holder no longer on the chart
+    mutate(function(){ t.trail.pop(); t.escalated = t.trail.length > 0; });
+    toast("Previous owner is no longer on the chart \u2014 escalation cleared.");
+    return;
+  }
+  mutate(function(){
+    t.trail.pop();
+    t.assignee = prev === "unassigned" ? null : prev;
+    t.escalated = t.trail.length > 0;
+  });
+  toast("Sent back to " + toName, function(){
+    mutate(function(){ t.trail.push(prev); t.assignee = cur; t.escalated = true; });
+  });
+  if (prev !== "unassigned"){ selectedPerson = prev; renderPanel(); highlightChain(prev); }
+}
 /* ---------- Modals ---------- */
 var overlay = document.getElementById("overlay");
 var modalEl = document.getElementById("modal");
@@ -868,6 +928,7 @@ function openTaskModal(taskId, presetAssignee){
   var t = taskId ? state.tasks.find(function(x){ return x.id === taskId; }) : null;
   var isNew = !t;
   var status = t ? t.status : "todo";
+  var prio = t ? (t.priority || "med") : "med";
   openModal(
     '<div class="label">'+(isNew?"New Task":"Edit Task")+'</div>'+
     '<h2>'+(isNew?"What needs doing?":"Update this task")+'</h2>'+
@@ -876,6 +937,11 @@ function openTaskModal(taskId, presetAssignee){
       '<button type="button" class="s-todo'+(status==="todo"?" active":"")+'" data-s="todo">To Do</button>'+
       '<button type="button" class="s-progress'+(status==="progress"?" active":"")+'" data-s="progress">In Progress</button>'+
       '<button type="button" class="s-done'+(status==="done"?" active":"")+'" data-s="done">Done</button>'+
+    '</div></div>'+
+    '<div class="field"><label>Priority</label><div class="seg" id="tm-prio">'+
+      '<button type="button" class="p-low'+(prio==="low"?" active":"")+'" data-p="low">&#9660; Low</button>'+
+      '<button type="button" class="p-med'+(prio==="med"?" active":"")+'" data-p="med">Medium</button>'+
+      '<button type="button" class="p-high'+(prio==="high"?" active":"")+'" data-p="high">&#9650; High</button>'+
     '</div></div>'+
     '<div class="field"><label>Assigned to</label><select id="tm-who">'+personOptions(t?t.assignee:(presetAssignee||""), true)+'</select>'+
       '<div class="fhint">Unassigned tasks can be escalated straight to Will for routing.</div></div>'+
@@ -891,6 +957,14 @@ function openTaskModal(taskId, presetAssignee){
     '</div>'
   );
   var chosen = status;
+  var chosenPrio = prio;
+  modalEl.querySelectorAll("#tm-prio button").forEach(function(b){
+    b.addEventListener("click", function(){
+      chosenPrio = b.dataset.p;
+      modalEl.querySelectorAll("#tm-prio button").forEach(function(x){ x.classList.remove("active"); });
+      b.classList.add("active");
+    });
+  });
   modalEl.querySelectorAll("#tm-status button").forEach(function(b){
     b.addEventListener("click", function(){
       chosen = b.dataset.s;
@@ -909,9 +983,9 @@ function openTaskModal(taskId, presetAssignee){
     var notes = document.getElementById("tm-notes").value.trim();
     mutate(function(){
       if (isNew){
-        state.tasks.unshift({ id:uid("t"), name:name, status:chosen, assignee:who, project:proj, due:due, cat:cat, notes:notes, escalated:false, trail:[], created:todayISO() });
+        state.tasks.unshift({ id:uid("t"), name:name, status:chosen, priority:chosenPrio, assignee:who, project:proj, due:due, cat:cat, notes:notes, escalated:false, trail:[], created:todayISO() });
       } else {
-        t.name=name; t.status=chosen; t.assignee=who; t.project=proj; t.due=due; t.cat=cat; t.notes=notes;
+        t.name=name; t.status=chosen; t.priority=chosenPrio; t.assignee=who; t.project=proj; t.due=due; t.cat=cat; t.notes=notes;
         if (chosen === "done") t.escalated = false;
       }
     });
@@ -1035,7 +1109,9 @@ function openHelp(){
     '<h3>Moving tasks along</h3>'+
     '<p>On the <b>Board</b>, drag any task between To Do / In Progress / Done \u2014 or click the task and tap a status button. Same thing.</p>'+
     '<h3>Escalating up the chain</h3>'+
-    '<p>Every open task has an <b>\u21e7 Escalate</b> button. One click sends it to that person\u2019s manager, following the org chart exactly. The manager gets an orange badge on their card. Escalating an unassigned task routes it to Will. Every escalation has an <b>Undo</b>.</p>'+
+    '<p>Every open task has an <b>\u21e7 Escalate</b> button. One click sends it to that person\u2019s manager, following the org chart exactly. The manager gets an orange badge on their card. Escalating an unassigned task routes it to Will. Made a mistake? Every escalated task shows a teal <b>\u21e9 Send back</b> button that returns it exactly one step down the same path \u2014 no time limit, plus an instant Undo in the toast.</p>'+
+    '<h3>Priorities</h3>'+
+    '<p>Every task is Low, Medium, or High. High-priority tasks get an amber \u25b2 chip, float to the top of every list and board column, and are counted in the header. Set it when creating a task or change it anytime by clicking the task.</p>'+
     '<h3>People &amp; the chart</h3>'+
     '<p>Gear \u2192 <b>Add a person</b>, or click someone and hit <b>Edit</b> to rename them or change who they report to. Removing someone automatically moves their reports up and escalates their open tasks to their manager \u2014 nothing gets lost.</p>'+
     '<h3>Going multi-user (10 minutes, free)</h3>'+
@@ -1123,12 +1199,12 @@ function initCloud(cfg){
       return cloud.ref.get();
     })
     .then(function(snap){
-      if (snap.exists){ state = snap.data(); }
+      if (snap.exists){ state = migrateState(snap.data()); }
       else { cloud.ref.set(state); }
       cloud.on = true;
       cloud.ref.onSnapshot(function(s){
         if (s.exists && !s.metadata.hasPendingWrites && !cloud.saving){
-          state = s.data(); renderAll();
+          state = migrateState(s.data()); renderAll();
         }
       });
       renderAll();
@@ -1197,7 +1273,8 @@ document.getElementById("collapse-all").addEventListener("click", function(){
 });
 document.getElementById("f-project").addEventListener("change", function(e){ boardFilters.project = e.target.value; renderBoard(); });
 document.getElementById("f-person").addEventListener("change", function(e){ boardFilters.person = e.target.value; renderBoard(); });
-document.getElementById("f-clear").addEventListener("click", function(){ boardFilters = { project:"", person:"" }; renderFilters(); renderBoard(); });
+document.getElementById("f-priority").addEventListener("change", function(e){ boardFilters.priority = e.target.value; renderBoard(); });
+document.getElementById("f-clear").addEventListener("click", function(){ boardFilters = { project:"", person:"", priority:"" }; document.getElementById("f-priority").value = ""; renderFilters(); renderBoard(); });
 document.getElementById("welcome-close").addEventListener("click", function(){
   document.getElementById("welcome").hidden = true;
   mutate(function(){ state.welcomed = true; });
@@ -1220,7 +1297,7 @@ if (document.fonts && document.fonts.ready) document.fonts.ready.then(function()
 });
 
 /* ---------- Boot ---------- */
-state = loadLocal() || freshState();
+state = migrateState(loadLocal()) || freshState();
 if (!state.welcomed) document.getElementById("welcome").hidden = false;
 renderAll();
 requestAnimationFrame(function(){ fitChart(); });
