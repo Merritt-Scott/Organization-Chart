@@ -213,6 +213,60 @@
   .menu hr{border:none;border-top:1px solid rgba(255,255,255,.08);margin:6px 4px}
   .rel{position:relative}
 
+  /* ---- Germany / Tech Transfer ---- */
+  .gtabs{display:flex;gap:6px;flex-wrap:wrap}
+  .gtabs button{font:500 10px "Poppins";text-transform:uppercase;letter-spacing:.16em;padding:9px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(237,239,236,.65);cursor:pointer;transition:.2s}
+  .gtabs button:hover{color:var(--porcelain);border-color:rgba(56,214,190,.5)}
+  .gtabs button.active{border-color:var(--silica);color:var(--silica);background:rgba(56,214,190,.06)}
+  .gwrap{padding:24px 32px 80px}
+  .gcard{background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--glass-border);border-radius:16px;padding:22px;margin-bottom:16px;transition:border-color .2s}
+  .gcard.click{cursor:pointer}
+  .gcard.click:hover{border-color:rgba(56,214,190,.5)}
+  .gcard h3{font-weight:600;font-size:17px}
+  .gcard .g-sub{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);margin-top:2px}
+  .grow-head{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap}
+  .grow-head .spread{flex:1}
+  .pct-wrap{min-width:160px}
+  .pct-lbl{display:flex;justify-content:space-between;font-size:9px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);margin-bottom:5px}
+  .pct-lbl b{color:var(--porcelain);font-weight:600;font-variant-numeric:tabular-nums}
+  .deliv{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .dchip{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.13em;padding:6px 13px;border-radius:999px;border:1px solid;cursor:pointer;transition:.15s;user-select:none}
+  .dchip:hover{transform:translateY(-1px)}
+  .dchip.missing{border-color:rgba(224,120,92,.55);color:#E0785C;background:rgba(224,120,92,.07)}
+  .dchip.progress{border-color:rgba(224,177,92,.55);color:var(--amber);background:rgba(224,177,92,.07)}
+  .dchip.complete{border-color:rgba(50,131,113,.7);color:#6FCDB4;background:rgba(50,131,113,.12)}
+  .dchip .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px;vertical-align:1px}
+  .dchip.missing .dot{background:#E0785C}.dchip.progress .dot{background:var(--amber)}.dchip.complete .dot{background:#6FCDB4}
+  .g-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+  .g-note{font-size:12.5px;color:rgba(237,239,236,.6);margin-top:10px;font-style:italic}
+  .sp-link{font-size:9.5px;font-weight:500;text-transform:uppercase;letter-spacing:.13em;color:var(--silica);text-decoration:none;border:1px solid rgba(56,214,190,.4);padding:5px 12px;border-radius:999px;transition:.2s}
+  .sp-link:hover{background:rgba(56,214,190,.1)}
+  .spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-top:14px}
+  .spec-cell{background:rgba(18,54,52,.5);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:9px 12px}
+  .spec-cell .k{font-size:8px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+  .spec-cell .v{font-size:13px;margin-top:2px;font-weight:400}
+  .spec-cell .v.empty{color:#E0785C;font-style:italic;font-size:11px}
+  .qa{border-left:2px solid rgba(56,214,190,.35);padding-left:14px;margin-top:12px;font-size:13px;color:rgba(237,239,236,.75)}
+  .qa b{color:var(--silica);font-weight:500}
+  .dropzone{border:2px dashed rgba(56,214,190,.35);border-radius:16px;padding:42px 24px;text-align:center;color:var(--muted);transition:.2s;cursor:pointer;margin-bottom:18px}
+  .dropzone:hover,.dropzone.over{border-color:var(--silica);background:rgba(56,214,190,.05);color:var(--porcelain)}
+  .dropzone .big{font-size:15px;color:var(--porcelain);font-weight:500;margin-bottom:4px}
+  .file-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .file-ico{width:40px;height:40px;border-radius:10px;background:var(--ink3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+  .file-row .fname{font-size:14px;font-weight:500;word-break:break-all}
+  .file-row .fmeta{font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);margin-top:2px}
+  .file-acts{margin-left:auto;display:flex;gap:8px}
+  .prog-mini{height:5px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+  .prog-mini i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--silica-deep),var(--silica));transition:width .5s cubic-bezier(.2,.7,.2,1)}
+  .prog-mini.amber i{background:linear-gradient(90deg,#B98E45,var(--amber))}
+  .g-section-h{display:flex;align-items:baseline;gap:14px;margin:26px 0 14px;flex-wrap:wrap}
+  .g-section-h h2{font-weight:600;font-size:21px}
+  .g-section-h .hint{font-size:10px}
+  .stepper{display:flex;align-items:center;gap:8px}
+  .stepper button{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;color:var(--porcelain);cursor:pointer;font-size:13px;line-height:1;transition:.2s}
+  .stepper button:hover{border-color:var(--silica);color:var(--silica)}
+  .stepper .val{font-weight:600;font-variant-numeric:tabular-nums;min-width:42px;text-align:center;font-size:14px}
+  @media (max-width:900px){.gwrap{padding:18px 16px 60px}}
   .view{display:none} .view.active{display:block}
   .reveal{opacity:0;transform:translateY(30px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
   .reveal.d1{animation-delay:.1s}.reveal.d2{animation-delay:.2s}.reveal.d3{animation-delay:.3s}
@@ -241,10 +295,11 @@
     <button data-view="chart" class="active">Organization Chart</button>
     <button data-view="board">Task Board</button>
     <button data-view="projects">Projects</button>
+    <button data-view="germany">Germany</button>
   </div>
   <div class="nav-right">
     <span class="sync local" id="sync-pill">Local Mode</span>
-    <button class="btn gold" id="btn-new">+ New</button>
+    <button class="btn gold" id="btn-new">+ New Task</button>
     <div class="rel">
       <button class="icon-btn" id="btn-gear" aria-label="Settings" title="Settings &amp; Help">&#9881;</button>
       <div class="menu" id="gear-menu">
@@ -320,6 +375,25 @@
   <div class="projects" id="projects"></div>
 </div>
 
+</div>
+
+<div id="view-germany" class="view">
+  <section class="hero reveal">
+    <div class="eyebrow">Microtec GmbH &middot; Bobingen</div>
+    <h1>Germany <em>Technology Transfer</em></h1>
+    <p class="lede">The complete procurement &amp; engineering tracker &mdash; drawing packages, equipment specs, plant deliverables, open questions, and a drop zone for the Germany team&rsquo;s files.</p>
+  </section>
+  <div class="stats" id="g-stats"></div>
+  <div class="toolbar">
+    <div class="gtabs" id="g-tabs">
+      <button data-g="drawings" class="active">Drawing Packages</button>
+      <button data-g="specs">Equipment Specs</button>
+      <button data-g="plants">Plant Deliverables</button>
+      <button data-g="questions">Open Questions</button>
+      <button data-g="files">File Drop</button>
+    </div>
+  </div>
+  <div class="gwrap" id="g-content"></div>
 </div>
 
 <div class="overlay" id="overlay"><div class="modal" id="modal"></div></div>
@@ -409,13 +483,18 @@ function freshState(){
   return { people: JSON.parse(JSON.stringify(SEED_PEOPLE)),
            projects: JSON.parse(JSON.stringify(SEED_PROJECTS)),
            tasks: JSON.parse(JSON.stringify(SEED_TASKS)),
-           welcomed:false, v:1 };
+           gmbh: seedGmbh(),
+           welcomed:false, v:2 };
 }
 function migrateState(st){
   if (!st) return st;
   (st.tasks || []).forEach(function(t){
     if (!t.priority) t.priority = "med";
     if (!t.trail) t.trail = [];
+  });
+  if (!st.gmbh) st.gmbh = seedGmbh();
+  ["drawings","specs","plants","questions","files"].forEach(function(k){
+    if (!st.gmbh[k]) st.gmbh[k] = seedGmbh()[k];
   });
   return st;
 }
@@ -476,7 +555,7 @@ var boardFilters = { project:"", person:"" };
 var zoomScale = 1;
 
 function renderAll(){
-  renderStats(); renderTree(); renderPanel(); renderBoard(); renderProjects(); renderFilters(); renderSync();
+  renderStats(); renderTree(); renderPanel(); renderBoard(); renderProjects(); renderFilters(); renderSync(); renderGermany();
 }
 
 function renderStats(){
@@ -1100,6 +1179,512 @@ function openPersonModal(personId){
   }
   setTimeout(function(){ document.getElementById("hm-name").focus(); }, 50);
 }
+/* =====================================================================
+   GERMANY / GmbH TECHNOLOGY TRANSFER MODULE
+   Replicates MICROTEC_GmbH_PROCUREMENT.xlsx structure & functionality
+   ===================================================================== */
+var SP = {
+  hts630:"https://netorgft14235597-my.sharepoint.com/:f:/g/personal/will_microtecdhus_com/IgCnrSxLD4qUT4rj-4PiOxUmAZ3T34GqKs3jcRo-Q87HdRQ",
+  hts960:"https://netorgft14235597-my.sharepoint.com/:f:/g/personal/will_microtecdhus_com/IgAvQ81B1d6PSLvHtPdiT2trASxyNa0io8T6yHGQQ6jYyyE",
+  zvk1120:"https://netorgft14235597-my.sharepoint.com/:f:/g/personal/will_microtecdhus_com/IgDVKG09v4cTSLL04s6DnGruAcD6fHyKeqKt2t6kAXgTe9Q",
+  mfg100:"https://netorgft14235597-my.sharepoint.com/:f:/g/personal/will_microtecdhus_com/IgDZr8sbP7NqRbVs1dIRXKeqAV5Ub2-0IZ2hcHO88LJ5gsY",
+  mfg630:"https://netorgft14235597-my.sharepoint.com/:f:/g/personal/will_microtecdhus_com/IgDuYrojw5oYR6ZMTWWk1HJjAdevuDgYDvzys80AjgIx4T4",
+  utm400:"https://netorgft14235597-my.sharepoint.com/:f:/g/personal/will_microtecdhus_com/IgBreNqWf_IlTZdnKBx3UxolASnRF0CIAXfnRhX5xu4pTrw",
+  utm800:"https://netorgft14235597-my.sharepoint.com/:f:/g/personal/will_microtecdhus_com/IgACKmXiu0rYTZErd3mXYvP1Ad-GgeEutDyU3G495Gd7KFI",
+  utm1200:"https://netorgft14235597-my.sharepoint.com/:f:/g/personal/will_microtecdhus_com/IgCusxl3WOkgQpvNg6qblDJwAU2Ucvc7VEuhrhGFYqpYj2Y",
+  utm1600:"https://netorgft14235597-my.sharepoint.com/:f:/g/personal/will_microtecdhus_com/IgD5jFpBNlBCTYYd5XvRN2_BAd21-BXNQQfp4YrXelD33cQ"
+};
+function D(item, model, st, dates, link, notes, pct){
+  return { id:"d-"+model.toLowerCase().replace(/[^a-z0-9]/g,""), item:item, model:model,
+    d2:st[0], d3:st[1], specs:st[2], wear:st[3],
+    dates:{ d2:dates[0]||"", d3:dates[1]||"", wear:dates[2]||"" },
+    link:link||"", notes:notes||"", pct:pct };
+}
+var SPEC_FIELDS = [
+  ["install","Installations"], ["mfr","Manufacturer"], ["wlbs","Unit Weight (lbs)"], ["wkg","Unit Weight (kg)"],
+  ["cfm","Air Requirements (CFM)"], ["rpm","Speed / RPM"], ["motor","Primary Motor kW/RPM"],
+  ["utility","Utility Req. (Phase, Volts)"], ["vfd","Primary Motor VFD Required?"],
+  ["thr13","Throughput t/hr (Mohs 1\u20133)"], ["thr46","Throughput t/hr (Mohs 4\u20136)"], ["thr710","Throughput t/hr (Mohs 7\u201310)"],
+  ["cost","Estimated Cost"], ["lead","Estimated Lead Time"]
+];
+function S(item, model, f, link){
+  var o = { id:"s-"+model.toLowerCase().replace(/[^a-z0-9]/g,""), item:item, model:model, link:link||"", fields:{} };
+  SPEC_FIELDS.forEach(function(sf){ o.fields[sf[0]] = (f && f[sf[0]] != null) ? String(f[sf[0]]) : ""; });
+  return o;
+}
+function PI(name, sub, note){ return { id:uid("pi"), name:name, sub:sub||"", note:note||"", status:"missing", date:"", pct:0 }; }
+function seedGmbh(){
+  return {
+    drawings: [
+      D("Air Classifier","HELEC 1600",["progress","progress","missing","missing"],["2026-04-24","",""],SP.hts630,"Josef sent overview dwg, Denis working on 3D model and then 2D",20),
+      D("Air Classifier","HTS-630",["complete","missing","missing","missing"],["","",""],SP.hts630,"",0),
+      D("Air Classifier","HTS-960",["complete","missing","missing","missing"],["","",""],SP.hts960,"",40),
+      D("Cyclone","ZVK-1120",["complete","missing","missing","missing"],["","",""],SP.zvk1120,"",40),
+      D("Jet Mill","MFG-100",["complete","missing","missing","missing"],["","",""],SP.mfg100,"",40),
+      D("Jet Mill","MFG-630",["complete","missing","missing","missing"],["","",""],SP.mfg630,"Drawings sent to Serkan",60),
+      D("Turbo Mill","UTM 400",["missing","missing","missing","complete"],["","",""],SP.utm400,"No GA DWGs",20),
+      D("Turbo Mill","UTM 800",["missing","missing","missing","complete"],["","",""],SP.utm800,"No GA DWGs",20),
+      D("Turbo Mill","UTM 1200",["complete","missing","missing","complete"],["","",""],SP.utm1200,"",90),
+      D("Turbo Mill","UTM 1600",["complete","missing","missing","complete"],["","",""],SP.utm1600,"No GA DWGs",80)
+    ],
+    specs: [
+      S("Turbo Mill","UTM 100",{wlbs:0,vfd:"YES"}),
+      S("Turbo Mill","UTM 200",{wlbs:0,vfd:"YES"}),
+      S("Turbo Mill","UTM 400",{wlbs:0,vfd:"YES"},SP.utm400),
+      S("Turbo Mill","UTM 600",{vfd:"YES"}),
+      S("Turbo Mill","UTM 800",{wlbs:0,vfd:"YES"},SP.utm800),
+      S("Turbo Mill","UTM 1200",{install:"RGUS",mfr:"TOMRIS MAKINA",wlbs:22050,wkg:10000,vfd:"YES"},SP.utm1200),
+      S("Turbo Mill","UTM 1600",{install:"MODESTO",wlbs:0,cfm:12000,rpm:"0-1000",motor:"355/1750",utility:"460V, 60Hz, 3PH",vfd:"YES"},SP.utm1600),
+      S("Air Classifier","HTS-630",{install:"MODESTO",wlbs:0,cfm:6000,rpm:"0-1500",motor:"30/3600",utility:"460V, 60Hz, 3PH",vfd:"YES"},SP.hts630),
+      S("Air Classifier","HTS-960",{install:"MODESTO",wlbs:0,cfm:12000,rpm:"0-1000",motor:"45/3600",utility:"460V, 60Hz, 3PH",vfd:"YES"},SP.hts960),
+      S("Air Classifier","HELEC 1600",{install:"MODESTO",mfr:"TOMRIS MAKINA",cfm:12000,motor:"22/3600",vfd:"YES"}),
+      S("Jet Mill","MFG-100",{wlbs:0},SP.mfg100),
+      S("Jet Mill","MFG-630",{install:"MODESTO",mfr:"TOMRIS MAKINA",wlbs:3969,wkg:1800,cfm:2100},SP.mfg630),
+      S("Jet Mill","MFG-710",{install:"MODESTO",mfr:"TOMRIS MAKINA",cfm:2100,motor:"15/3600",vfd:"YES"})
+    ],
+    plants: [
+      { id:"pl-wood", title:"Wood Flour Processing Plant", items:[
+        PI("Process Flow Diagrams (PFDs)"),
+        PI("Piping & Instrumentation Diagrams (P&IDs)"),
+        PI("Complete Equipment List","","Mills, classifiers, conveyors, and controls"),
+        PI("Design Basis & Key Process Assumptions","","Throughput, moisture, particle size, etc."),
+        PI("Preliminary Cost"),
+        PI("Preliminary Lead Times")
+      ]},
+      { id:"pl-cryo", title:"Cryogenic Tire Processing System", items:[
+        PI("Process Flow Diagrams (PFDs)"),
+        PI("Piping & Instrumentation Diagrams (P&IDs)"),
+        PI("Complete Equipment Lists","Pre-Processing"),
+        PI("Complete Equipment Lists","Cryogenic Cooling"),
+        PI("Complete Equipment Lists","Classification"),
+        PI("Complete Equipment Lists","Handling"),
+        PI("Complete Equipment Lists","Milling"),
+        PI("Design Basis & Key Process Assumptions","Downstream product specifications (target mesh size, fiber/steel removal expectations)"),
+        PI("Conveying & Material Handling Requirements"),
+        PI("Preliminary Equipment Selections"),
+        PI("Preliminary Cost"),
+        PI("Preliminary Lead Times")
+      ]}
+    ],
+    questions: [
+      { id:uid("q"), item:"Mill throughput for different material types (ton/hr)", info:"Glass / Tire", note:"", status:"open", answer:"" },
+      { id:uid("q"), item:"Does the 1200 mill need a VFD?", info:"What % should we run at? Can we run at 100%? Do we have any previous dwgs or pictures of previous control panels installed?", note:"Met-L-Tec has a 22 week lead time on the VFD", status:"open", answer:"" },
+      { id:uid("q"), item:"Detailed Vendor List", info:"", note:"1. Washers; 2. Innerliners; 3. Grinding Elements; 4. Sensors; 5. Rotor Balancer", status:"open", answer:"" },
+      { id:uid("q"), item:"Server Status", info:"", note:"", status:"open", answer:"" },
+      { id:uid("q"), item:"Scale factor for the mills", info:"How do we scale up from UTM 100 to 1600? Do we have dwgs for each?", note:"", status:"open", answer:"" }
+    ],
+    files: []
+  };
+}
+
+/* ---- File blob store (kept outside main state to protect size limits) ---- */
+var FILE_BLOBS = {};
+var FILES_KEY = "microtec-hq-files-v1";
+function loadBlobs(){
+  try { var raw = localStorage.getItem(FILES_KEY); if (raw) FILE_BLOBS = JSON.parse(raw); } catch(e){}
+}
+function persistBlobs(){
+  try { localStorage.setItem(FILES_KEY, JSON.stringify(FILE_BLOBS)); }
+  catch(e){ toast("Browser storage is full \u2014 delete a file or two, or set up cloud sync."); }
+  if (cloud.on && cloud.filesCol){
+    // handled per-file at upload/delete time
+  }
+}
+var G_TAB = "drawings";
+var DELIVS = [["d2","2D DWGs"],["d3","3D DWGs"],["specs","Specs"],["wear","Wear Parts"]];
+function cycleStatus(s){ return s === "missing" ? "progress" : s === "progress" ? "complete" : "missing"; }
+function dchip(kind, key, s, label){
+  return '<span class="dchip '+s+'" data-cyc="'+kind+'" data-key="'+key+'" title="Click to cycle: Missing \u2192 In Progress \u2192 Complete"><span class="dot"></span>'+label+'</span>';
+}
+function pctBar(p, amber){
+  return '<div class="pct-wrap"><div class="pct-lbl"><span>Completion</span><b>'+p+'%</b></div><div class="prog-mini'+(amber?' amber':'')+'"><i style="width:'+p+'%"></i></div></div>';
+}
+function specFilled(sp){
+  var n = 0; SPEC_FIELDS.forEach(function(f){ if (String(sp.fields[f[0]]).trim() !== "") n++; });
+  return n;
+}
+function fmtBytes(b){ return b > 1048576 ? (b/1048576).toFixed(1)+" MB" : b > 1024 ? Math.round(b/1024)+" KB" : b+" B"; }
+function fileIcon(name){
+  var e = (name.split(".").pop()||"").toLowerCase();
+  if (["png","jpg","jpeg","gif","webp","svg"].indexOf(e)>=0) return "\uD83D\uDDBC";
+  if (["dwg","dxf","step","stp","iges","igs"].indexOf(e)>=0) return "\uD83D\uDCD0";
+  if (["pdf"].indexOf(e)>=0) return "\uD83D\uDCC4";
+  if (["xls","xlsx","csv"].indexOf(e)>=0) return "\uD83D\uDCCA";
+  if (["zip","rar","7z"].indexOf(e)>=0) return "\uD83D\uDDC3";
+  return "\uD83D\uDCC1";
+}
+function fileTagOptions(sel){
+  var out = '<option value="general"'+(sel==="general"?" selected":"")+'>General</option>';
+  state.gmbh.drawings.forEach(function(d){ out += '<option value="'+d.id+'"'+(sel===d.id?" selected":"")+'>'+esc(d.item+" "+d.model)+'</option>'; });
+  state.gmbh.plants.forEach(function(p){ out += '<option value="'+p.id+'"'+(sel===p.id?" selected":"")+'>'+esc(p.title)+'</option>'; });
+  out += '<option value="questions"'+(sel==="questions"?" selected":"")+'>Open Questions</option>';
+  return out;
+}
+function fileTagName(v){
+  if (v === "general") return "General";
+  if (v === "questions") return "Open Questions";
+  var d = state.gmbh.drawings.find(function(x){ return x.id === v; });
+  if (d) return d.item + " " + d.model;
+  var p = state.gmbh.plants.find(function(x){ return x.id === v; });
+  if (p) return p.title;
+  return "General";
+}
+
+/* ---- Germany stats ---- */
+function renderGStats(){
+  var g = state.gmbh;
+  var dAvg = Math.round(g.drawings.reduce(function(a,d){ return a + (d.pct||0); }, 0) / g.drawings.length);
+  var totF = g.specs.length * SPEC_FIELDS.length, gotF = g.specs.reduce(function(a,s){ return a + specFilled(s); }, 0);
+  var pItems = [], pDone = 0;
+  g.plants.forEach(function(p){ p.items.forEach(function(i){ pItems.push(i); if (i.status === "complete") pDone++; }); });
+  var qOpen = g.questions.filter(function(q){ return q.status !== "complete"; }).length;
+  document.getElementById("g-stats").innerHTML =
+    '<div class="stat"><div class="num teal">'+dAvg+'%</div><div class="lbl">Drawings avg</div></div>'+
+    '<div class="stat"><div class="num gold">'+gotF+'/'+totF+'</div><div class="lbl">Spec fields filled</div></div>'+
+    '<div class="stat"><div class="num green">'+pDone+'/'+pItems.length+'</div><div class="lbl">Plant deliverables</div></div>'+
+    '<div class="stat"><div class="num" style="color:var(--amber)">'+qOpen+'</div><div class="lbl">Open questions</div></div>'+
+    '<div class="stat"><div class="num sand">'+g.files.length+'</div><div class="lbl">Files uploaded</div></div>';
+}
+
+/* ---- Section renderers ---- */
+function renderGermany(){
+  if (!state.gmbh) return;
+  renderGStats();
+  var host = document.getElementById("g-content");
+  if (G_TAB === "drawings") host.innerHTML = gDrawingsHTML();
+  else if (G_TAB === "specs") host.innerHTML = gSpecsHTML();
+  else if (G_TAB === "plants") host.innerHTML = gPlantsHTML();
+  else if (G_TAB === "questions") host.innerHTML = gQuestionsHTML();
+  else host.innerHTML = gFilesHTML();
+  wireGermany(host);
+}
+function gDrawingsHTML(){
+  var h = '<div class="g-section-h"><h2>Drawing Packages</h2><span class="hint">Click a status chip to cycle it &middot; click Edit for dates, notes &amp; completion</span></div>';
+  state.gmbh.drawings.forEach(function(d){
+    var files = state.gmbh.files.filter(function(f){ return f.tag === d.id; }).length;
+    h += '<div class="gcard" data-draw="'+d.id+'">'+
+      '<div class="grow-head"><div class="spread"><h3>'+esc(d.item)+' &middot; '+esc(d.model)+'</h3>'+
+      '<div class="g-sub">'+(files ? files+' file'+(files>1?'s':'')+' uploaded &middot; ' : '')+'Drawing package</div></div>'+
+      pctBar(d.pct, d.pct < 50)+'</div>'+
+      '<div class="deliv">'+DELIVS.map(function(dv){ return dchip(d.id, dv[0], d[dv[0]], dv[1]); }).join("")+'</div>'+
+      '<div class="g-meta">'+
+      (d.dates.d2 && d.dates.d2 !== "" ? '<span class="chip due">2D est: '+esc(d.dates.d2)+'</span>' : '')+
+      (d.dates.d3 ? '<span class="chip due">3D est: '+esc(d.dates.d3)+'</span>' : '')+
+      (d.dates.wear ? '<span class="chip due">Wear est: '+esc(d.dates.wear)+'</span>' : '')+
+      (d.link ? '<a class="sp-link" href="'+esc(d.link)+'" target="_blank" rel="noopener">SharePoint folder \u2197</a>' : '')+
+      '<button class="btn faint" data-editdraw="'+d.id+'" style="margin-left:auto">Edit</button></div>'+
+      (d.notes ? '<div class="g-note">'+esc(d.notes)+'</div>' : '')+
+      '</div>';
+  });
+  return h;
+}
+function gSpecsHTML(){
+  var h = '<div class="g-section-h"><h2>Equipment Specifications</h2><span class="hint">Red fields are what the Germany team still needs to provide &middot; click Edit to fill them</span></div>';
+  state.gmbh.specs.forEach(function(sp){
+    var n = specFilled(sp), pct = Math.round(n / SPEC_FIELDS.length * 100);
+    h += '<div class="gcard"><div class="grow-head"><div class="spread"><h3>'+esc(sp.item)+' &middot; '+esc(sp.model)+'</h3>'+
+      '<div class="g-sub">'+n+' of '+SPEC_FIELDS.length+' fields provided</div></div>'+pctBar(pct, pct < 50)+'</div>'+
+      '<div class="spec-grid">'+SPEC_FIELDS.map(function(f){
+        var v = String(sp.fields[f[0]]).trim();
+        return '<div class="spec-cell"><div class="k">'+f[1]+'</div><div class="v'+(v===""?' empty':'')+'">'+(v===""?"Needed from GmbH":esc(v))+'</div></div>';
+      }).join("")+'</div>'+
+      '<div class="g-meta">'+(sp.link ? '<a class="sp-link" href="'+esc(sp.link)+'" target="_blank" rel="noopener">SharePoint folder \u2197</a>' : '')+
+      '<button class="btn faint" data-editspec="'+sp.id+'" style="margin-left:auto">Edit Specs</button></div></div>';
+  });
+  return h;
+}
+function gPlantsHTML(){
+  var h = "";
+  state.gmbh.plants.forEach(function(pl){
+    var done = pl.items.filter(function(i){ return i.status === "complete"; }).length;
+    h += '<div class="g-section-h"><h2>'+esc(pl.title)+'</h2><span class="hint">'+done+' of '+pl.items.length+' complete</span></div>';
+    pl.items.forEach(function(it){
+      h += '<div class="gcard"><div class="grow-head"><div class="spread"><h3 style="font-size:15px">'+esc(it.name)+(it.sub ? ' <span style="color:var(--silica);font-weight:400">\u2014 '+esc(it.sub)+'</span>' : '')+'</h3>'+
+        (it.note ? '<div class="g-sub" style="text-transform:none;letter-spacing:0;font-size:12px">'+esc(it.note)+'</div>' : '')+'</div>'+
+        pctBar(it.pct, it.pct < 50)+'</div>'+
+        '<div class="g-meta">'+dchip("pl:"+pl.id, it.id, it.status, it.status === "missing" ? "Not started" : it.status === "progress" ? "In progress" : "Complete")+
+        (it.date ? '<span class="chip due">Est: '+esc(it.date)+'</span>' : '')+
+        '<button class="btn faint" data-editplant="'+pl.id+':'+it.id+'" style="margin-left:auto">Edit</button></div></div>';
+    });
+  });
+  return h;
+}
+function gQuestionsHTML(){
+  var h = '<div class="g-section-h"><h2>Additional Questions</h2><span class="hint">Answers from the Germany team land here &middot; click the chip when resolved</span></div>';
+  state.gmbh.questions.forEach(function(q){
+    h += '<div class="gcard"><div class="grow-head"><div class="spread"><h3 style="font-size:15.5px">'+esc(q.item)+'</h3>'+
+      (q.info ? '<div class="g-sub" style="text-transform:none;letter-spacing:0;font-size:12.5px;margin-top:6px">'+esc(q.info)+'</div>' : '')+'</div></div>'+
+      (q.answer ? '<div class="qa"><b>Answer:</b> '+esc(q.answer)+'</div>' : '')+
+      (q.note ? '<div class="g-note">'+esc(q.note)+'</div>' : '')+
+      '<div class="g-meta">'+dchip("q", q.id, q.status === "complete" ? "complete" : q.status === "progress" ? "progress" : "missing", q.status === "complete" ? "Answered" : q.status === "progress" ? "In discussion" : "Open")+
+      '<button class="btn faint" data-editq="'+q.id+'" style="margin-left:auto">'+(q.answer ? "Edit" : "Answer")+'</button></div></div>';
+  });
+  h += '<button class="btn ghost" id="g-addq">+ Add a question</button>';
+  return h;
+}
+function gFilesHTML(){
+  var h = '<div class="g-section-h"><h2>File Drop</h2><span class="hint">Drawings, specs, photos, PDFs &mdash; up to 700 KB per file (bigger files: share the SharePoint link on the item instead)</span></div>'+
+    '<div class="dropzone" id="dropzone"><div class="big">Drop files here or click to browse</div>Tag each file to a machine or plant after upload so nothing gets lost.</div>'+
+    '<input type="file" id="g-file-input" multiple hidden>';
+  if (!state.gmbh.files.length){
+    h += '<p class="none">No files yet. Anything the Germany team drops here is saved and listed for the whole team'+(cloud.on?'':' (cloud sync will share it live)')+'.</p>';
+  }
+  state.gmbh.files.slice().sort(function(a,b){ return b.date < a.date ? -1 : 1; }).forEach(function(f){
+    h += '<div class="gcard"><div class="file-row"><div class="file-ico">'+fileIcon(f.name)+'</div>'+
+      '<div><div class="fname">'+esc(f.name)+'</div>'+
+      '<div class="fmeta">'+fmtBytes(f.size)+' &middot; '+esc(fileTagName(f.tag))+' &middot; '+esc(f.date)+(f.by ? ' &middot; by '+esc(f.by) : '')+'</div>'+
+      (f.note ? '<div class="g-note">'+esc(f.note)+'</div>' : '')+'</div>'+
+      '<div class="file-acts"><button class="btn ghost" data-dl="'+f.id+'">Download</button>'+
+      '<button class="btn faint" data-editfile="'+f.id+'">Edit</button>'+
+      '<button class="btn danger" data-delfile="'+f.id+'">Delete</button></div></div></div>';
+  });
+  return h;
+}
+/* ---- Germany interactions ---- */
+function wireGermany(host){
+  host.querySelectorAll(".dchip[data-cyc]").forEach(function(ch){
+    ch.addEventListener("click", function(){
+      var kind = ch.dataset.cyc, key = ch.dataset.key;
+      mutate(function(){
+        if (kind === "q"){
+          var q = state.gmbh.questions.find(function(x){ return x.id === key; });
+          q.status = q.status === "open" ? "progress" : q.status === "progress" ? "complete" : "open";
+        } else if (kind.indexOf("pl:") === 0){
+          var pl = state.gmbh.plants.find(function(x){ return x.id === kind.slice(3); });
+          var it = pl.items.find(function(x){ return x.id === key; });
+          it.status = cycleStatus(it.status);
+          if (it.status === "complete") it.pct = 100;
+        } else {
+          var d = state.gmbh.drawings.find(function(x){ return x.id === kind; });
+          d[key] = cycleStatus(d[key]);
+        }
+      });
+    });
+  });
+  host.querySelectorAll("[data-editdraw]").forEach(function(b){ b.addEventListener("click", function(){ openDrawModal(b.dataset.editdraw); }); });
+  host.querySelectorAll("[data-editspec]").forEach(function(b){ b.addEventListener("click", function(){ openSpecModal(b.dataset.editspec); }); });
+  host.querySelectorAll("[data-editplant]").forEach(function(b){ b.addEventListener("click", function(){
+    var p = b.dataset.editplant.split(":"); openPlantModal(p[0], p[1]);
+  }); });
+  host.querySelectorAll("[data-editq]").forEach(function(b){ b.addEventListener("click", function(){ openQModal(b.dataset.editq); }); });
+  var addq = host.querySelector("#g-addq");
+  if (addq) addq.addEventListener("click", function(){ openQModal(null); });
+  var dz = host.querySelector("#dropzone");
+  if (dz){
+    var inp = host.querySelector("#g-file-input");
+    dz.addEventListener("click", function(){ inp.click(); });
+    dz.addEventListener("dragover", function(e){ e.preventDefault(); dz.classList.add("over"); });
+    dz.addEventListener("dragleave", function(){ dz.classList.remove("over"); });
+    dz.addEventListener("drop", function(e){ e.preventDefault(); dz.classList.remove("over"); handleFiles(e.dataTransfer.files); });
+    inp.addEventListener("change", function(){ handleFiles(inp.files); inp.value = ""; });
+  }
+  host.querySelectorAll("[data-dl]").forEach(function(b){ b.addEventListener("click", function(){ downloadFile(b.dataset.dl); }); });
+  host.querySelectorAll("[data-editfile]").forEach(function(b){ b.addEventListener("click", function(){ openFileModal(b.dataset.editfile); }); });
+  host.querySelectorAll("[data-delfile]").forEach(function(b){ b.addEventListener("click", function(){ deleteFile(b.dataset.delfile); }); });
+}
+
+var FILE_CAP = 700 * 1024;
+function handleFiles(list){
+  Array.prototype.forEach.call(list, function(f){
+    if (f.size > FILE_CAP){
+      toast('"'+truncate(f.name, 28)+'" is '+fmtBytes(f.size)+' \u2014 over the 700 KB limit. Put it in SharePoint and paste the link on the item instead.');
+      return;
+    }
+    var r = new FileReader();
+    r.onload = function(){
+      var id = uid("f");
+      FILE_BLOBS[id] = r.result;
+      persistBlobs();
+      if (cloud.on && cloud.filesCol) cloud.filesCol.doc(id).set({ data: r.result }).catch(function(){ toast("Cloud file save failed \u2014 kept locally."); });
+      mutate(function(){
+        state.gmbh.files.push({ id:id, name:f.name, size:f.size, tag:"general", note:"", by:"", date:todayISO() });
+      });
+      toast('"'+truncate(f.name, 28)+'" uploaded \u2014 tag it so it\u2019s easy to find.', null);
+      openFileModal(id);
+    };
+    r.readAsDataURL(f);
+  });
+}
+function downloadFile(id){
+  var meta = state.gmbh.files.find(function(x){ return x.id === id; });
+  var data = FILE_BLOBS[id];
+  if (!data){
+    if (cloud.on && cloud.filesCol){
+      cloud.filesCol.doc(id).get().then(function(doc){
+        if (doc.exists){ FILE_BLOBS[id] = doc.data().data; persistBlobs(); downloadFile(id); }
+        else toast("File data not found in cloud.");
+      });
+      return;
+    }
+    toast("File data isn\u2019t on this device (uploaded from another browser without cloud sync).");
+    return;
+  }
+  var a = document.createElement("a");
+  a.href = data; a.download = meta ? meta.name : "file";
+  a.click();
+}
+function deleteFile(id){
+  var idx = state.gmbh.files.findIndex(function(x){ return x.id === id; });
+  if (idx < 0) return;
+  var meta = state.gmbh.files[idx];
+  var blob = FILE_BLOBS[id];
+  mutate(function(){ state.gmbh.files.splice(idx, 1); });
+  delete FILE_BLOBS[id];
+  persistBlobs();
+  if (cloud.on && cloud.filesCol) cloud.filesCol.doc(id).delete().catch(function(){});
+  toast('Deleted "'+truncate(meta.name, 28)+'"', function(){
+    FILE_BLOBS[id] = blob; persistBlobs();
+    if (cloud.on && cloud.filesCol && blob) cloud.filesCol.doc(id).set({ data: blob });
+    mutate(function(){ state.gmbh.files.splice(idx, 0, meta); });
+  });
+}
+
+/* ---- Germany modals ---- */
+function stepperHTML(id, val){
+  return '<div class="stepper"><button type="button" data-step="-10" data-for="'+id+'">\u2212</button>'+
+    '<span class="val" id="'+id+'">'+val+'%</span>'+
+    '<button type="button" data-step="10" data-for="'+id+'">+</button></div>';
+}
+function wireStepper(getSet){
+  modalEl.querySelectorAll("[data-step]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var v = Math.max(0, Math.min(100, getSet() + parseInt(b.dataset.step, 10)));
+      getSet(v);
+      document.getElementById(b.dataset.for).textContent = v + "%";
+    });
+  });
+}
+function openDrawModal(id){
+  var d = state.gmbh.drawings.find(function(x){ return x.id === id; });
+  var pv = d.pct;
+  openModal(
+    '<div class="label">Drawing Package</div><h2>'+esc(d.item)+' &middot; '+esc(d.model)+'</h2>'+
+    '<div class="field"><label>2D DWGs est. completion</label><input type="date" id="gd-d2" value="'+esc(d.dates.d2)+'"></div>'+
+    '<div class="field"><label>Detailed 3D DWGs est. completion</label><input type="date" id="gd-d3" value="'+esc(d.dates.d3)+'"></div>'+
+    '<div class="field"><label>Wear Parts DWGs est. completion</label><input type="date" id="gd-wear" value="'+esc(d.dates.wear)+'"></div>'+
+    '<div class="field"><label>SharePoint link</label><input type="text" id="gd-link" value="'+esc(d.link)+'" placeholder="https://\u2026"></div>'+
+    '<div class="field"><label>Notes</label><textarea id="gd-notes" maxlength="600">'+esc(d.notes)+'</textarea></div>'+
+    '<div class="field"><label>% Completion (overall judgement, like the workbook)</label>'+stepperHTML("gd-pct", pv)+'</div>'+
+    '<div class="modal-actions"><span class="spacer"></span><button class="btn faint" id="gd-cancel">Cancel</button><button class="btn primary" id="gd-save">Save</button></div>'
+  );
+  wireStepper(function(v){ if (v !== undefined) pv = v; return pv; });
+  document.getElementById("gd-cancel").addEventListener("click", closeModal);
+  document.getElementById("gd-save").addEventListener("click", function(){
+    mutate(function(){
+      d.dates.d2 = document.getElementById("gd-d2").value;
+      d.dates.d3 = document.getElementById("gd-d3").value;
+      d.dates.wear = document.getElementById("gd-wear").value;
+      d.link = document.getElementById("gd-link").value.trim();
+      d.notes = document.getElementById("gd-notes").value.trim();
+      d.pct = pv;
+    });
+    closeModal(); toast("Drawing package updated.");
+  });
+}
+function openSpecModal(id){
+  var sp = state.gmbh.specs.find(function(x){ return x.id === id; });
+  var fields = SPEC_FIELDS.map(function(f){
+    return '<div class="field"><label>'+f[1]+'</label><input type="text" data-sf="'+f[0]+'" value="'+esc(sp.fields[f[0]])+'" placeholder="Needed from GmbH"></div>';
+  }).join("");
+  openModal(
+    '<div class="label">Equipment Specs</div><h2>'+esc(sp.item)+' &middot; '+esc(sp.model)+'</h2>'+fields+
+    '<div class="field"><label>SharePoint link</label><input type="text" id="gs-link" value="'+esc(sp.link)+'" placeholder="https://\u2026"></div>'+
+    '<div class="modal-actions"><span class="spacer"></span><button class="btn faint" id="gs-cancel">Cancel</button><button class="btn primary" id="gs-save">Save Specs</button></div>'
+  );
+  document.getElementById("gs-cancel").addEventListener("click", closeModal);
+  document.getElementById("gs-save").addEventListener("click", function(){
+    mutate(function(){
+      modalEl.querySelectorAll("[data-sf]").forEach(function(inp){ sp.fields[inp.dataset.sf] = inp.value.trim(); });
+      sp.link = document.getElementById("gs-link").value.trim();
+    });
+    closeModal(); toast(esc(sp.model)+" specs saved.");
+  });
+}
+function openPlantModal(plId, itemId){
+  var pl = state.gmbh.plants.find(function(x){ return x.id === plId; });
+  var it = pl.items.find(function(x){ return x.id === itemId; });
+  var pv = it.pct;
+  openModal(
+    '<div class="label">'+esc(pl.title)+'</div><h2 style="font-size:20px">'+esc(it.name)+(it.sub ? ' \u2014 '+esc(it.sub) : '')+'</h2>'+
+    '<div class="field"><label>Est. completion date</label><input type="date" id="gp-date" value="'+esc(it.date)+'"></div>'+
+    '<div class="field"><label>Notes</label><textarea id="gp-note" maxlength="600">'+esc(it.note)+'</textarea></div>'+
+    '<div class="field"><label>% Completion</label>'+stepperHTML("gp-pct", pv)+'</div>'+
+    '<div class="modal-actions"><span class="spacer"></span><button class="btn faint" id="gp-cancel">Cancel</button><button class="btn primary" id="gp-save">Save</button></div>'
+  );
+  wireStepper(function(v){ if (v !== undefined) pv = v; return pv; });
+  document.getElementById("gp-cancel").addEventListener("click", closeModal);
+  document.getElementById("gp-save").addEventListener("click", function(){
+    mutate(function(){
+      it.date = document.getElementById("gp-date").value;
+      it.note = document.getElementById("gp-note").value.trim();
+      it.pct = pv;
+      if (pv === 100) it.status = "complete";
+      else if (pv > 0 && it.status === "missing") it.status = "progress";
+    });
+    closeModal(); toast("Deliverable updated.");
+  });
+}
+function openQModal(id){
+  var q = id ? state.gmbh.questions.find(function(x){ return x.id === id; }) : null;
+  var isNew = !q;
+  openModal(
+    '<div class="label">'+(isNew ? "New Question" : "Open Question")+'</div>'+
+    '<h2 style="font-size:20px">'+(isNew ? "What needs answering?" : esc(q.item))+'</h2>'+
+    (isNew ? '<div class="field"><label>Question *</label><input type="text" id="gq-item" maxlength="160"></div>' : '')+
+    '<div class="field"><label>Specific info / context</label><textarea id="gq-info" maxlength="600">'+(q ? esc(q.info) : "")+'</textarea></div>'+
+    '<div class="field"><label>Answer from the team</label><textarea id="gq-answer" maxlength="1200" placeholder="Type the answer here \u2014 saving an answer marks the question Answered">'+(q ? esc(q.answer) : "")+'</textarea></div>'+
+    '<div class="field"><label>Notes</label><textarea id="gq-note" maxlength="600">'+(q ? esc(q.note) : "")+'</textarea></div>'+
+    '<div class="modal-actions">'+(isNew ? "" : '<button class="btn danger" id="gq-del">Delete</button>')+
+    '<span class="spacer"></span><button class="btn faint" id="gq-cancel">Cancel</button><button class="btn primary" id="gq-save">Save</button></div>'
+  );
+  document.getElementById("gq-cancel").addEventListener("click", closeModal);
+  document.getElementById("gq-save").addEventListener("click", function(){
+    var answer = document.getElementById("gq-answer").value.trim();
+    mutate(function(){
+      if (isNew){
+        var item = document.getElementById("gq-item").value.trim();
+        if (!item){ toast("Type the question first."); return; }
+        state.gmbh.questions.push({ id:uid("q"), item:item, info:document.getElementById("gq-info").value.trim(),
+          note:document.getElementById("gq-note").value.trim(), answer:answer, status: answer ? "complete" : "open" });
+      } else {
+        q.info = document.getElementById("gq-info").value.trim();
+        q.note = document.getElementById("gq-note").value.trim();
+        q.answer = answer;
+        if (answer && q.status !== "complete") q.status = "complete";
+      }
+    });
+    closeModal(); toast(isNew ? "Question added." : answer ? "Answer saved \u2014 marked Answered." : "Question updated.");
+  });
+  if (!isNew){
+    document.getElementById("gq-del").addEventListener("click", function(){
+      var idx = state.gmbh.questions.indexOf(q);
+      mutate(function(){ state.gmbh.questions.splice(idx, 1); });
+      closeModal();
+      toast("Question deleted.", function(){ mutate(function(){ state.gmbh.questions.splice(idx, 0, q); }); });
+    });
+  }
+}
+function openFileModal(id){
+  var f = state.gmbh.files.find(function(x){ return x.id === id; });
+  if (!f) return;
+  openModal(
+    '<div class="label">Uploaded File</div><h2 style="font-size:19px;word-break:break-all">'+esc(f.name)+'</h2>'+
+    '<div class="field"><label>Belongs to</label><select id="gf-tag">'+fileTagOptions(f.tag)+'</select>'+
+    '<div class="fhint">Tagging files to a machine or plant keeps the drop organized.</div></div>'+
+    '<div class="field"><label>Uploaded by (optional)</label><input type="text" id="gf-by" maxlength="40" value="'+esc(f.by||"")+'" placeholder="e.g. Josef, Denis, Serkan"></div>'+
+    '<div class="field"><label>Note (optional)</label><input type="text" id="gf-note" maxlength="200" value="'+esc(f.note||"")+'" placeholder="e.g. Rev B \u2014 replaces last week\u2019s version"></div>'+
+    '<div class="modal-actions"><span class="spacer"></span><button class="btn faint" id="gf-cancel">Cancel</button><button class="btn primary" id="gf-save">Save</button></div>'
+  );
+  document.getElementById("gf-cancel").addEventListener("click", closeModal);
+  document.getElementById("gf-save").addEventListener("click", function(){
+    mutate(function(){
+      f.tag = document.getElementById("gf-tag").value;
+      f.by = document.getElementById("gf-by").value.trim();
+      f.note = document.getElementById("gf-note").value.trim();
+    });
+    closeModal(); toast("File details saved.");
+  });
+}
 /* ---------- Help ---------- */
 function openHelp(){
   openModal(
@@ -1126,6 +1711,8 @@ function openHelp(){
     '<li><span class="step-num">07</span>Save, put the file wherever the team opens it (shared drive or any web host), refresh. The pill in the top bar turns teal: <b>Cloud Sync</b>. Everyone now sees the same live data.</li>'+
     '</ol>'+
     '<p><b>Important:</b> test mode is open for 30 days \u2014 fine to start, but before then have whoever set it up lock the Firestore rules to your team. Ask Claude and we\u2019ll write the rules together.</p>'+
+    '<h3>The Germany tab</h3>'+
+    '<p>A working replica of the GmbH procurement workbook. <b>Drawing Packages</b>: click any status chip (2D / 3D / Specs / Wear Parts) to cycle Missing \u2192 In Progress \u2192 Complete; Edit holds the est. dates, SharePoint link, notes, and the overall %. <b>Equipment Specs</b>: red fields are exactly what the Germany team still owes \u2014 Edit Specs to fill them. <b>Plant Deliverables</b> and <b>Open Questions</b> work the same way; typing an answer marks a question Answered. <b>File Drop</b>: drag files in (700 KB each), tag them to a machine, download anytime. With cloud sync on, files are shared with everyone.</p>'+
     '<h3>Backups</h3>'+
     '<p>Gear \u2192 <b>Export backup</b> downloads everything as one file. <b>Import backup</b> restores it. Do this before big changes \u2014 it\u2019s one click.</p>'+
     '</div>'+
@@ -1147,7 +1734,8 @@ function toast(msg, undoFn){
 
 /* ---------- Export / Import / Reset ---------- */
 function doExport(){
-  var blob = new Blob([JSON.stringify(state, null, 2)], { type:"application/json" });
+  var payload = { state: state, fileBlobs: FILE_BLOBS };
+  var blob = new Blob([JSON.stringify(payload, null, 2)], { type:"application/json" });
   var a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = "microtec-hq-backup-" + todayISO() + ".json";
@@ -1159,9 +1747,12 @@ document.getElementById("import-file").addEventListener("change", function(e){
   var r = new FileReader();
   r.onload = function(){
     try {
-      var data = JSON.parse(r.result);
+      var raw = JSON.parse(r.result);
+      var data = raw.state && raw.state.people ? raw.state : raw; // supports old + new backup formats
       if (!data.people || !data.tasks || !data.projects) throw new Error("Not a Microtec HQ backup");
       var prev = JSON.parse(JSON.stringify(state));
+      if (raw.fileBlobs){ FILE_BLOBS = raw.fileBlobs; persistBlobs(); }
+      data = migrateState(data);
       mutate(function(){ state = data; });
       toast("Backup restored.", function(){ mutate(function(){ state = prev; }); });
     } catch(err){ toast("Couldn\u2019t import: " + err.message); }
@@ -1196,6 +1787,7 @@ function initCloud(cfg){
       firebase.initializeApp(cfg);
       var db = firebase.firestore();
       cloud.ref = db.collection("microtec-hq").doc("state");
+      cloud.filesCol = db.collection("microtec-hq-files");
       return cloud.ref.get();
     })
     .then(function(snap){
@@ -1274,6 +1866,12 @@ document.getElementById("collapse-all").addEventListener("click", function(){
 document.getElementById("f-project").addEventListener("change", function(e){ boardFilters.project = e.target.value; renderBoard(); });
 document.getElementById("f-person").addEventListener("change", function(e){ boardFilters.person = e.target.value; renderBoard(); });
 document.getElementById("f-priority").addEventListener("change", function(e){ boardFilters.priority = e.target.value; renderBoard(); });
+document.getElementById("g-tabs").addEventListener("click", function(e){
+  var b = e.target.closest("button"); if (!b) return;
+  G_TAB = b.dataset.g;
+  document.querySelectorAll("#g-tabs button").forEach(function(x){ x.classList.toggle("active", x === b); });
+  renderGermany();
+});
 document.getElementById("f-clear").addEventListener("click", function(){ boardFilters = { project:"", person:"", priority:"" }; document.getElementById("f-priority").value = ""; renderFilters(); renderBoard(); });
 document.getElementById("welcome-close").addEventListener("click", function(){
   document.getElementById("welcome").hidden = true;
@@ -1297,6 +1895,7 @@ if (document.fonts && document.fonts.ready) document.fonts.ready.then(function()
 });
 
 /* ---------- Boot ---------- */
+loadBlobs();
 state = migrateState(loadLocal()) || freshState();
 if (!state.welcomed) document.getElementById("welcome").hidden = false;
 renderAll();
